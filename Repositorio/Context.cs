@@ -16,6 +16,7 @@ namespace Repositorio.Context
         }
 
         public DbSet<Endereco> Endereco { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
                
     }
 }

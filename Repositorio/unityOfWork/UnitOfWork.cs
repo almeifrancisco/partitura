@@ -2,6 +2,7 @@
 using System.Transactions;
 using Repositorio.Context;
 using System.Data.Objects;
+using System.Linq;
 
 namespace Repositorio.unityOfWork
 {
