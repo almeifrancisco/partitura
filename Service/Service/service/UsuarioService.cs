@@ -7,10 +7,14 @@ using System.Data.Entity;
 using Repositorio.repo;
 using Repositorio;
 using Repositorio.unityOfWork;
+using Service.service.seguranca;
 namespace Service.service
 {
     public class UsuarioService : IService<Usuario>
     {
+
+
+
         UsuarioRepositorio repo;
         DbSet db;
         IUnitOfWork unit;
@@ -20,12 +24,27 @@ namespace Service.service
             repo = new UsuarioRepositorio(unit);
             db = repo.UnitOfWork.Db.Set<Usuario>();
 
-        }   
+        }
+
+
+        public string CadastroDeUsuario(Usuario usuario)
+        {
+            PasswordManager PwManage = new PasswordManager();
+            string salt = null;
+            string passwordHash = PwManage.GeneratePasswordHash(usuario.senha , out salt);
+
+            //Validar
+
+            Insert(usuario);
+            return salt;
+        }
+
 
         public Usuario Single(object primaryKey)
         {
-            Usuario user = db.Find
-            throw new NotImplementedException();
+            Usuario user = repo.Single(primaryKey);
+            return user;
+
         }
 
 

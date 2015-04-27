@@ -15,7 +15,8 @@ namespace Service.service
         public EnderecoService() 
         {
             unitOfWork = new UnitOfWork();
-
+            Usuario usu = new Usuario();
+            
             repo = new EnderecoRepositorio(unitOfWork);
                        
         }

@@ -12,11 +12,13 @@ namespace Partitu.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+           
             Endereco endereco = new Endereco() { bairro = "fra" };
             return View(endereco);
         }
+
+
+       
 
         public ActionResult About()
         {

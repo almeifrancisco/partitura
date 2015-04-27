@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using Service.service;
 using Service.service.seguranca;
+using Repositorio;
+using Repositorio.repo;
 
 namespace Testes
 {
     class Program
     {
+       public static UsuarioService ser = new UsuarioService();
         static PasswordManager pwdManager = new PasswordManager();
         static void Main(string[] args)
         {
-            
+            SimulateUserCreation();
 
         }
 
@@ -30,16 +33,15 @@ namespace Testes
             string passwordHash = pwdManager.GeneratePasswordHash(password, out salt);
 
             // Let us save the values in the database
-            User user = new User
+            Usuario user = new Usuario
             {
-                UserId = userid,
-                PasswordHash = passwordHash,
-                Salt = salt
+                
+                senha = passwordHash,
+                codS = salt
             };
 
             // Lets Add the User to the database
-            userRepo.AddUser(user);
-
+            ser.Insert(user); 
             return salt;
         }
 
@@ -54,9 +56,9 @@ namespace Testes
             string password = Console.ReadLine();
 
             // Let us retrieve the values from the database
-            User user2 = userRepo.GetUser(userid);
+            Usuario user2 = ser.Single(userid);
 
-            bool result = pwdManager.IsPasswordMatch(password, user2.Salt, user2.PasswordHash);
+            bool result = pwdManager.IsPasswordMatch(password, user2.codS, user2.senha);
 
             if (result == true)
             {

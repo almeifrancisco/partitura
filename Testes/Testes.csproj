@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Repositorio\Repositorio.csproj">
+      <Project>{993C7BBA-FED8-4456-861B-338CF94ECB62}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Service\Service\Service.csproj">
       <Project>{D4C760ED-8360-4FDB-B8AC-6230466317C8}</Project>
       <Name>Service</Name>

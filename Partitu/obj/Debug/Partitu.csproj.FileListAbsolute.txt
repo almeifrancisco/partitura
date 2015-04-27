@@ -8,9 +8,12 @@ C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\DotNetO
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\DotNetOpenAuth.OpenId.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\EntityFramework.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\EntityFramework.SqlServer.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Newtonsoft.Json.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Repositorio.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Service.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\System.Net.Http.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\System.Net.Http.Formatting.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\System.Net.Http.WebRequest.dll
@@ -26,7 +29,10 @@ C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\System.
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\WebGrease.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\WebMatrix.Data.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\WebMatrix.WebData.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Repositorio.pdb
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Service.pdb
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\EntityFramework.xml
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\EntityFramework.SqlServer.xml
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Newtonsoft.Json.xml
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\System.Net.Http.xml
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\System.Net.Http.Formatting.xml
@@ -48,10 +54,6 @@ C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\DotNetO
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\DotNetOpenAuth.OAuth.xml
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\DotNetOpenAuth.OpenId.xml
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\obj\Debug\Partitu.csprojResolveAssemblyReference.cache
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\obj\Debug\Partitu.dll
 C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\obj\Debug\Partitu.pdb
-C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Repositorio.dll
-C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Service.dll
-C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Repositorio.pdb
-C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\bin\Service.pdb
-C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Partitu\obj\Debug\Partitu.csprojResolveAssemblyReference.cache
