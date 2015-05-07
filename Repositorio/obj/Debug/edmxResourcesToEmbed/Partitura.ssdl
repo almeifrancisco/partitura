@@ -18,7 +18,7 @@
     <EntitySet Name="Pesquisa" EntityType="FirstProjecModel.Store.Pesquisa" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RespostaPesquisa" EntityType="FirstProjecModel.Store.RespostaPesquisa" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="sysdiagrams" EntityType="FirstProjecModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoPagamentoCompra" EntityType="FirstProjecModel.Store.TipoPagamentoCompra" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoPagamento" EntityType="FirstProjecModel.Store.TipoPagamento" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Usuario" EntityType="FirstProjecModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Vendedor" EntityType="FirstProjecModel.Store.Vendedor" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_categoriaDaPartitura_CategoriaP" Association="FirstProjecModel.Store.FK_categoriaDaPartitura_CategoriaP">
@@ -33,7 +33,11 @@
       <End Role="Partitura" EntitySet="Partitura" />
       <End Role="Compra" EntitySet="Compra" />
     </AssociationSet>
-    <AssociationSet Name="FK_Compra_Usuario" Association="FirstProjecModel.Store.FK_Compra_Usuario">
+    <AssociationSet Name="FK_Compra_TipoPagamento" Association="FirstProjecModel.Store.FK_Compra_TipoPagamento">
+      <End Role="TipoPagamento" EntitySet="TipoPagamento" />
+      <End Role="Compra" EntitySet="Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compra_Usuario1" Association="FirstProjecModel.Store.FK_Compra_Usuario1">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Compra" EntitySet="Compra" />
     </AssociationSet>
@@ -89,14 +93,6 @@
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="RespostaPesquisa" EntitySet="RespostaPesquisa" />
     </AssociationSet>
-    <AssociationSet Name="FK_TipoPagamentoCompra_Compra" Association="FirstProjecModel.Store.FK_TipoPagamentoCompra_Compra">
-      <End Role="Compra" EntitySet="Compra" />
-      <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TipoPagamentoCompra_FormaPagamento" Association="FirstProjecModel.Store.FK_TipoPagamentoCompra_FormaPagamento">
-      <End Role="FormaPagamento" EntitySet="FormaPagamento" />
-      <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
-    </AssociationSet>
     <AssociationSet Name="FK_Usuario_Endereco" Association="FirstProjecModel.Store.FK_Usuario_Endereco">
       <End Role="Endereco" EntitySet="Endereco" />
       <End Role="Usuario" EntitySet="Usuario" />
@@ -135,6 +131,7 @@
     <Property Name="status" Type="nchar" Nullable="false" MaxLength="10" />
     <Property Name="valor" Type="float" Nullable="false" />
     <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="fk_tipoPagamento" Type="int" />
   </EntityType>
   <EntityType Name="Contato">
     <Key>
@@ -266,13 +263,12 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <EntityType Name="TipoPagamentoCompra">
+  <EntityType Name="TipoPagamento">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="fk_compra" Type="int" Nullable="false" />
-    <Property Name="fk_tipo_pagamento" Type="int" Nullable="false" />
+    <Property Name="tipo" Type="varbinary" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -280,12 +276,12 @@
     </Key>
     <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="cpf" Type="nchar" Nullable="false" MaxLength="11" />
-    <Property Name="senha" Type="nchar" Nullable="false" MaxLength="8" />
+    <Property Name="senha" Type="nvarchar(max)" Nullable="false" />
     <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="data_nascimento" Type="date" Nullable="false" />
     <Property Name="data_cadastro" Type="date" Nullable="false" />
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="fk_endereco" Type="int" Nullable="false" />
+    <Property Name="fk_endereco" Type="int" />
     <Property Name="codS" Type="varchar(max)" Nullable="false" />
     <Property Name="nivel" Type="nchar" Nullable="false" MaxLength="10" />
   </EntityType>
@@ -301,25 +297,25 @@
   </EntityType>
   <Association Name="FK_categoriaDaPartitura_CategoriaP">
     <End Role="CategoriaP" Type="FirstProjecModel.Store.CategoriaP" Multiplicity="1" />
-    <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="0..1" />
+    <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CategoriaP">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="categoriaDaPartitura">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_categoria" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_categoriaDaPartitura_Partitura">
     <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="1" />
-    <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="0..1" />
+    <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Partitura">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="categoriaDaPartitura">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_partitura" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -335,7 +331,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Compra_Usuario">
+  <Association Name="FK_Compra_TipoPagamento">
+    <End Role="TipoPagamento" Type="FirstProjecModel.Store.TipoPagamento" Multiplicity="0..1" />
+    <End Role="Compra" Type="FirstProjecModel.Store.Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPagamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="fk_tipoPagamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compra_Usuario1">
     <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
     <End Role="Compra" Type="FirstProjecModel.Store.Compra" Multiplicity="*" />
     <ReferentialConstraint>
@@ -409,49 +417,49 @@
   </Association>
   <Association Name="FK_InstrumentosNaPartitura_Partitura">
     <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="1" />
-    <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.Store.InstrumentosNaPartitura" Multiplicity="0..1" />
+    <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.Store.InstrumentosNaPartitura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Partitura">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="InstrumentosNaPartitura">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_partitura" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Like_Partitura">
     <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="1" />
-    <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="0..1" />
+    <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Partitura">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Like">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_partitura" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Like_Usuario">
     <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
-    <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="0..1" />
+    <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuario">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Like">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Partitura_Vendedor">
     <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="1" />
-    <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="0..1" />
+    <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vendedor">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Partitura">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_vendedor" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -492,74 +500,50 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_RespostaPesquisa_Usuario">
-    <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
-    <End Role="RespostaPesquisa" Type="FirstProjecModel.Store.RespostaPesquisa" Multiplicity="0..1" />
+    <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="0..1" />
+    <End Role="RespostaPesquisa" Type="FirstProjecModel.Store.RespostaPesquisa" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuario">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="RespostaPesquisa">
-        <PropertyRef Name="id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TipoPagamentoCompra_Compra">
-    <End Role="Compra" Type="FirstProjecModel.Store.Compra" Multiplicity="1" />
-    <End Role="TipoPagamentoCompra" Type="FirstProjecModel.Store.TipoPagamentoCompra" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Compra">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="TipoPagamentoCompra">
-        <PropertyRef Name="fk_compra" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TipoPagamentoCompra_FormaPagamento">
-    <End Role="FormaPagamento" Type="FirstProjecModel.Store.FormaPagamento" Multiplicity="1" />
-    <End Role="TipoPagamentoCompra" Type="FirstProjecModel.Store.TipoPagamentoCompra" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FormaPagamento">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="TipoPagamentoCompra">
-        <PropertyRef Name="fk_tipo_pagamento" />
+        <PropertyRef Name="fk_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Usuario_Endereco">
-    <End Role="Endereco" Type="FirstProjecModel.Store.Endereco" Multiplicity="1" />
-    <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="0..1" />
+    <End Role="Endereco" Type="FirstProjecModel.Store.Endereco" Multiplicity="0..1" />
+    <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Endereco">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Usuario">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_endereco" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vendedor_InformacaoBancaria">
     <End Role="InformacaoBancaria" Type="FirstProjecModel.Store.InformacaoBancaria" Multiplicity="1" />
-    <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="0..1" />
+    <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="InformacaoBancaria">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Vendedor">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_info_bancaria" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vendedor_Usuario">
     <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
-    <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="0..1" />
+    <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuario">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Vendedor">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="fk_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

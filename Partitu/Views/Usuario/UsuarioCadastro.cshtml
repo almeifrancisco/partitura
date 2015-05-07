@@ -1,0 +1,89 @@
+﻿@model Partitu.Models.Usuario
+
+@{
+    ViewBag.Title = "UsuarioCadastro";
+}
+
+<div class="container">
+
+    <h2 align="center" class="block-center">UsuarioCadastro</h2>
+
+  @using(Html.BeginForm() )
+  {
+      @Html.ValidationSummary(true)
+
+    <div class="row"> 
+        <div class="col-md-3 col-md-offset-3">
+        @Html.LabelFor(x => x.nome)
+        </div>
+        <div class="col-md-3">
+        @Html.EditorFor(x => x.nome)<br/>
+        @Html.ValidationMessageFor(x => x.nome)
+        </div>
+    </div>
+      <br/>
+    <div class="row"> 
+        <div class="col-md-3 col-md-offset-3">
+        @Html.LabelFor(x => x.email)
+        </div>
+        <div class="col-md-3">
+        @Html.EditorFor(x => x.email)<br/>
+                @Html.ValidationMessageFor(x => x.email)
+
+        </div>
+    </div>
+    <br/>
+    <div class="row"> 
+        <div class="col-md-3 col-md-offset-3">
+        @Html.LabelFor(x => x.cpf)
+        </div>
+        <div class="col-md-3">
+        @Html.EditorFor(x => x.cpf)<br/>
+                @Html.ValidationMessageFor(x => x.cpf)
+
+        </div>
+    </div>
+      <br/>
+    <div class="row"> 
+        <div class="col-md-3 col-md-offset-3">
+        @Html.LabelFor(x => x.data_nascimento)
+        </div>
+        <div class="col-md-3">
+        
+        @Html.EditorFor(x => x.data_nascimento)<br/>
+            @Html.ValidationMessageFor(x => x.data_nascimento)
+ 
+        </div>
+    
+    </div>
+     <br/>
+      <div class="row"> 
+        <div class="col-md-3 col-md-offset-3">
+        @Html.LabelFor(x => x.senha)
+        </div>
+        <div class="col-md-3">
+        @Html.PasswordFor(x => x.senha)<br/>
+        @Html.ValidationMessageFor(x => x.senha)
+
+        </div>
+     </div>
+      <br/>
+       <div class="row"> 
+        <div class="col-md-3 col-md-offset-3">
+        @Html.LabelFor(x => x.confirmarSenha)
+        </div>
+        <div class="col-md-3">
+        @Html.PasswordFor(x => x.confirmarSenha)<br/>
+         @Html.ValidationMessageFor(x => x.confirmarSenha)
+
+        </div>
+     </div>
+       <div class="row"> 
+        <div class="col-md-3 col-md-offset-3">
+      <input type="submit" value="Cadastrar"/>
+        </div>
+        
+</div>
+  } 
+
+  </div>

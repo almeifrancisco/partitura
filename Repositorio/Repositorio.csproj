@@ -57,10 +57,10 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="IBaseRepositorio.cs" />
-    <Compile Include="Partitura.Designer.cs">
+    <Compile Include="Partitu.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Partitura.edmx</DependentUpon>
+      <DependentUpon>Partitu.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="repo\CategoriaDaPartituraRepositorio.cs" />
@@ -81,15 +81,13 @@
     <Compile Include="unityOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="Partitura.edmx">
+    <EntityDeploy Include="Partitu.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Partitura.Designer.cs</LastGenOutput>
+      <LastGenOutput>Partitu.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

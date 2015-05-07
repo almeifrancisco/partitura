@@ -8,6 +8,7 @@ using Repositorio.repo;
 using Repositorio;
 using Repositorio.unityOfWork;
 using Service.service.seguranca;
+
 namespace Service.service
 {
     public class UsuarioService : IService<Usuario>
@@ -16,22 +17,28 @@ namespace Service.service
 
 
         UsuarioRepositorio repo;
-        DbSet db;
-        IUnitOfWork unit;
-        public UsuarioService()
+        UnitOfWork unit;
+        public UsuarioService(UnitOfWork unit)
         {
-            unit = new UnitOfWork();
-            repo = new UsuarioRepositorio(unit);
-            db = repo.UnitOfWork.Db.Set<Usuario>();
+            this.unit = unit;
+            repo = new UsuarioRepositorio(this.unit);
+
 
         }
 
 
         public string CadastroDeUsuario(Usuario usuario)
         {
+            
             PasswordManager PwManage = new PasswordManager();
             string salt = null;
             string passwordHash = PwManage.GeneratePasswordHash(usuario.senha , out salt);
+            usuario.codS = salt;
+            usuario.senha = passwordHash;
+            usuario.fk_endereco = 4;
+            usuario.data_cadastro = DateTime.Now;
+            usuario.nivel = "a";
+            
 
             //Validar
 
@@ -70,7 +77,8 @@ namespace Service.service
 
         public int Insert(Usuario entity)
         {
-            throw new NotImplementedException();
+            repo.Insert(entity);
+            return entity.id;
         }
 
         public void Update(Usuario entity)

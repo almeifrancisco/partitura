@@ -61,7 +61,8 @@ namespace Service.service
 
         public int Insert(Endereco entity)
         {
-            throw new NotImplementedException();
+            repo.Insert(entity);
+            return entity.id;
         }
 
         public void Update(Endereco entity)

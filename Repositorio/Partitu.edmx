@@ -23,7 +23,7 @@
           <EntitySet Name="Pesquisa" EntityType="FirstProjecModel.Store.Pesquisa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RespostaPesquisa" EntityType="FirstProjecModel.Store.RespostaPesquisa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="FirstProjecModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TipoPagamentoCompra" EntityType="FirstProjecModel.Store.TipoPagamentoCompra" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoPagamento" EntityType="FirstProjecModel.Store.TipoPagamento" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Usuario" EntityType="FirstProjecModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vendedor" EntityType="FirstProjecModel.Store.Vendedor" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_categoriaDaPartitura_CategoriaP" Association="FirstProjecModel.Store.FK_categoriaDaPartitura_CategoriaP">
@@ -38,7 +38,11 @@
             <End Role="Partitura" EntitySet="Partitura" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK_Compra_Usuario" Association="FirstProjecModel.Store.FK_Compra_Usuario">
+          <AssociationSet Name="FK_Compra_TipoPagamento" Association="FirstProjecModel.Store.FK_Compra_TipoPagamento">
+            <End Role="TipoPagamento" EntitySet="TipoPagamento" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compra_Usuario1" Association="FirstProjecModel.Store.FK_Compra_Usuario1">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
@@ -94,14 +98,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="RespostaPesquisa" EntitySet="RespostaPesquisa" />
           </AssociationSet>
-          <AssociationSet Name="FK_TipoPagamentoCompra_Compra" Association="FirstProjecModel.Store.FK_TipoPagamentoCompra_Compra">
-            <End Role="Compra" EntitySet="Compra" />
-            <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TipoPagamentoCompra_FormaPagamento" Association="FirstProjecModel.Store.FK_TipoPagamentoCompra_FormaPagamento">
-            <End Role="FormaPagamento" EntitySet="FormaPagamento" />
-            <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Endereco" Association="FirstProjecModel.Store.FK_Usuario_Endereco">
             <End Role="Endereco" EntitySet="Endereco" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -140,6 +136,7 @@
           <Property Name="status" Type="nchar" Nullable="false" MaxLength="10" />
           <Property Name="valor" Type="float" Nullable="false" />
           <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fk_tipoPagamento" Type="int" />
         </EntityType>
         <EntityType Name="Contato">
           <Key>
@@ -271,26 +268,25 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TipoPagamentoCompra">
+        <EntityType Name="TipoPagamento">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="fk_compra" Type="int" Nullable="false" />
-          <Property Name="fk_tipo_pagamento" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varbinary" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="cpf" Type="nchar" Nullable="false" MaxLength="11" />
-          <Property Name="senha" Type="nchar" Nullable="false" MaxLength="8" />
+          <Property Name="cpf" Type="nchar" Nullable="false" MaxLength="15" />
+          <Property Name="senha" Type="nvarchar(max)" Nullable="false" />
           <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="data_nascimento" Type="date" Nullable="false" />
           <Property Name="data_cadastro" Type="date" Nullable="false" />
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="fk_endereco" Type="int" Nullable="false" />
+          <Property Name="fk_endereco" Type="int" />
           <Property Name="codS" Type="varchar(max)" Nullable="false" />
           <Property Name="nivel" Type="nchar" Nullable="false" MaxLength="10" />
         </EntityType>
@@ -306,25 +302,25 @@
         </EntityType>
         <Association Name="FK_categoriaDaPartitura_CategoriaP">
           <End Role="CategoriaP" Type="FirstProjecModel.Store.CategoriaP" Multiplicity="1" />
-          <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="0..1" />
+          <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategoriaP">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="categoriaDaPartitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_categoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_categoriaDaPartitura_Partitura">
           <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="1" />
-          <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="0..1" />
+          <End Role="categoriaDaPartitura" Type="FirstProjecModel.Store.categoriaDaPartitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partitura">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="categoriaDaPartitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_partitura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -340,7 +336,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Compra_Usuario">
+        <Association Name="FK_Compra_TipoPagamento">
+          <End Role="TipoPagamento" Type="FirstProjecModel.Store.TipoPagamento" Multiplicity="0..1" />
+          <End Role="Compra" Type="FirstProjecModel.Store.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPagamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="fk_tipoPagamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Usuario1">
           <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
           <End Role="Compra" Type="FirstProjecModel.Store.Compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -414,49 +422,49 @@
         </Association>
         <Association Name="FK_InstrumentosNaPartitura_Partitura">
           <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="1" />
-          <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.Store.InstrumentosNaPartitura" Multiplicity="0..1" />
+          <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.Store.InstrumentosNaPartitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partitura">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="InstrumentosNaPartitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_partitura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Like_Partitura">
           <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="1" />
-          <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="0..1" />
+          <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partitura">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Like">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_partitura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Like_Usuario">
           <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
-          <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="0..1" />
+          <End Role="Like" Type="FirstProjecModel.Store.Like" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Like">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Partitura_Vendedor">
           <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="1" />
-          <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="0..1" />
+          <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vendedor">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Partitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_vendedor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -497,74 +505,50 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RespostaPesquisa_Usuario">
-          <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
-          <End Role="RespostaPesquisa" Type="FirstProjecModel.Store.RespostaPesquisa" Multiplicity="0..1" />
+          <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="0..1" />
+          <End Role="RespostaPesquisa" Type="FirstProjecModel.Store.RespostaPesquisa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="RespostaPesquisa">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TipoPagamentoCompra_Compra">
-          <End Role="Compra" Type="FirstProjecModel.Store.Compra" Multiplicity="1" />
-          <End Role="TipoPagamentoCompra" Type="FirstProjecModel.Store.TipoPagamentoCompra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Compra">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TipoPagamentoCompra">
-              <PropertyRef Name="fk_compra" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TipoPagamentoCompra_FormaPagamento">
-          <End Role="FormaPagamento" Type="FirstProjecModel.Store.FormaPagamento" Multiplicity="1" />
-          <End Role="TipoPagamentoCompra" Type="FirstProjecModel.Store.TipoPagamentoCompra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormaPagamento">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TipoPagamentoCompra">
-              <PropertyRef Name="fk_tipo_pagamento" />
+              <PropertyRef Name="fk_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Usuario_Endereco">
-          <End Role="Endereco" Type="FirstProjecModel.Store.Endereco" Multiplicity="1" />
-          <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="0..1" />
+          <End Role="Endereco" Type="FirstProjecModel.Store.Endereco" Multiplicity="0..1" />
+          <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Endereco">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Usuario">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_endereco" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Vendedor_InformacaoBancaria">
           <End Role="InformacaoBancaria" Type="FirstProjecModel.Store.InformacaoBancaria" Multiplicity="1" />
-          <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="0..1" />
+          <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InformacaoBancaria">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Vendedor">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_info_bancaria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Vendedor_Usuario">
           <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
-          <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="0..1" />
+          <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Vendedor">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -629,7 +613,7 @@
           <EntitySet Name="Pesquisa" EntityType="FirstProjecModel.Pesquisa" />
           <EntitySet Name="RespostaPesquisa" EntityType="FirstProjecModel.RespostaPesquisa" />
           <EntitySet Name="sysdiagrams" EntityType="FirstProjecModel.sysdiagrams" />
-          <EntitySet Name="TipoPagamentoCompra" EntityType="FirstProjecModel.TipoPagamentoCompra" />
+          <EntitySet Name="TipoPagamento" EntityType="FirstProjecModel.TipoPagamento" />
           <EntitySet Name="Usuario" EntityType="FirstProjecModel.Usuario" />
           <EntitySet Name="Vendedor" EntityType="FirstProjecModel.Vendedor" />
           <AssociationSet Name="FK_categoriaDaPartitura_CategoriaP" Association="FirstProjecModel.FK_categoriaDaPartitura_CategoriaP">
@@ -644,13 +628,13 @@
             <End Role="Partitura" EntitySet="Partitura" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK_Compra_Usuario" Association="FirstProjecModel.FK_Compra_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK_Compra_TipoPagamento" Association="FirstProjecModel.FK_Compra_TipoPagamento">
+            <End Role="TipoPagamento" EntitySet="TipoPagamento" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK_TipoPagamentoCompra_Compra" Association="FirstProjecModel.FK_TipoPagamentoCompra_Compra">
+          <AssociationSet Name="FK_Compra_Usuario1" Association="FirstProjecModel.FK_Compra_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Compra" EntitySet="Compra" />
-            <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
           </AssociationSet>
           <AssociationSet Name="FK_ContatoRespostaPesquisa_Contato" Association="FirstProjecModel.FK_ContatoRespostaPesquisa_Contato">
             <End Role="Contato" EntitySet="Contato" />
@@ -671,10 +655,6 @@
           <AssociationSet Name="FK_Usuario_Endereco" Association="FirstProjecModel.FK_Usuario_Endereco">
             <End Role="Endereco" EntitySet="Endereco" />
             <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TipoPagamentoCompra_FormaPagamento" Association="FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento">
-            <End Role="FormaPagamento" EntitySet="FormaPagamento" />
-            <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
           </AssociationSet>
           <AssociationSet Name="FK_Vendedor_InformacaoBancaria" Association="FirstProjecModel.FK_Vendedor_InformacaoBancaria">
             <End Role="InformacaoBancaria" EntitySet="InformacaoBancaria" />
@@ -749,9 +729,10 @@
           <Property Name="status" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
           <Property Name="valor" Type="Double" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fk_tipoPagamento" Type="Int32" />
           <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_Compra_Partitura" FromRole="Compra" ToRole="Partitura" />
-          <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_Compra_Usuario" FromRole="Compra" ToRole="Usuario" />
-          <NavigationProperty Name="TipoPagamentoCompra" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_Compra" FromRole="Compra" ToRole="TipoPagamentoCompra" />
+          <NavigationProperty Name="TipoPagamento" Relationship="FirstProjecModel.FK_Compra_TipoPagamento" FromRole="Compra" ToRole="TipoPagamento" />
+          <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_Compra_Usuario1" FromRole="Compra" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Contato">
           <Key>
@@ -804,7 +785,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tipo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="TipoPagamentoCompra" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento" FromRole="FormaPagamento" ToRole="TipoPagamentoCompra" />
         </EntityType>
         <EntityType Name="InformacaoBancaria">
           <Key>
@@ -909,31 +889,29 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TipoPagamentoCompra">
+        <EntityType Name="TipoPagamento">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fk_compra" Type="Int32" Nullable="false" />
-          <Property Name="fk_tipo_pagamento" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Compra" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_Compra" FromRole="TipoPagamentoCompra" ToRole="Compra" />
-          <NavigationProperty Name="FormaPagamento" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento" FromRole="TipoPagamentoCompra" ToRole="FormaPagamento" />
+          <Property Name="tipo" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
+          <NavigationProperty Name="Compra" Relationship="FirstProjecModel.FK_Compra_TipoPagamento" FromRole="TipoPagamento" ToRole="Compra" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="cpf" Type="String" Nullable="false" MaxLength="11" Unicode="true" FixedLength="true" />
-          <Property Name="senha" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="true" />
+          <Property Name="cpf" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="senha" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="data_nascimento" Type="DateTime" Nullable="false" />
           <Property Name="data_cadastro" Type="DateTime" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fk_endereco" Type="Int32" Nullable="false" />
+          <Property Name="fk_endereco" Type="Int32" />
           <Property Name="codS" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="nivel" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Compra" Relationship="FirstProjecModel.FK_Compra_Usuario" FromRole="Usuario" ToRole="Compra" />
+          <NavigationProperty Name="Compra" Relationship="FirstProjecModel.FK_Compra_Usuario1" FromRole="Usuario" ToRole="Compra" />
           <NavigationProperty Name="DenunciaPartitura" Relationship="FirstProjecModel.FK_DenunciaPartitura_Usuario" FromRole="Usuario" ToRole="DenunciaPartitura" />
           <NavigationProperty Name="Endereco" Relationship="FirstProjecModel.FK_Usuario_Endereco" FromRole="Usuario" ToRole="Endereco" />
           <NavigationProperty Name="Like" Relationship="FirstProjecModel.FK_Like_Usuario" FromRole="Usuario" ToRole="Like" />
@@ -956,25 +934,25 @@
         </EntityType>
         <Association Name="FK_categoriaDaPartitura_CategoriaP">
           <End Role="CategoriaP" Type="FirstProjecModel.CategoriaP" Multiplicity="1" />
-          <End Role="categoriaDaPartitura" Type="FirstProjecModel.categoriaDaPartitura" Multiplicity="0..1" />
+          <End Role="categoriaDaPartitura" Type="FirstProjecModel.categoriaDaPartitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategoriaP">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="categoriaDaPartitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_categoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_categoriaDaPartitura_Partitura">
           <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
-          <End Role="categoriaDaPartitura" Type="FirstProjecModel.categoriaDaPartitura" Multiplicity="0..1" />
+          <End Role="categoriaDaPartitura" Type="FirstProjecModel.categoriaDaPartitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partitura">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="categoriaDaPartitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_partitura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -990,7 +968,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Compra_Usuario">
+        <Association Name="FK_Compra_TipoPagamento">
+          <End Role="TipoPagamento" Type="FirstProjecModel.TipoPagamento" Multiplicity="0..1" />
+          <End Role="Compra" Type="FirstProjecModel.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPagamento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="fk_tipoPagamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Usuario1">
           <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
           <End Role="Compra" Type="FirstProjecModel.Compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -999,18 +989,6 @@
             </Principal>
             <Dependent Role="Compra">
               <PropertyRef Name="fk_comprador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TipoPagamentoCompra_Compra">
-          <End Role="Compra" Type="FirstProjecModel.Compra" Multiplicity="1" />
-          <End Role="TipoPagamentoCompra" Type="FirstProjecModel.TipoPagamentoCompra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Compra">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TipoPagamentoCompra">
-              <PropertyRef Name="fk_compra" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1063,38 +1041,26 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Usuario_Endereco">
-          <End Role="Endereco" Type="FirstProjecModel.Endereco" Multiplicity="1" />
-          <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="0..1" />
+          <End Role="Endereco" Type="FirstProjecModel.Endereco" Multiplicity="0..1" />
+          <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Endereco">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Usuario">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TipoPagamentoCompra_FormaPagamento">
-          <End Role="FormaPagamento" Type="FirstProjecModel.FormaPagamento" Multiplicity="1" />
-          <End Role="TipoPagamentoCompra" Type="FirstProjecModel.TipoPagamentoCompra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormaPagamento">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TipoPagamentoCompra">
-              <PropertyRef Name="fk_tipo_pagamento" />
+              <PropertyRef Name="fk_endereco" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Vendedor_InformacaoBancaria">
           <End Role="InformacaoBancaria" Type="FirstProjecModel.InformacaoBancaria" Multiplicity="1" />
-          <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="0..1" />
+          <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InformacaoBancaria">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Vendedor">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_info_bancaria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1112,49 +1078,49 @@
         </Association>
         <Association Name="FK_InstrumentosNaPartitura_Partitura">
           <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
-          <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.InstrumentosNaPartitura" Multiplicity="0..1" />
+          <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.InstrumentosNaPartitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partitura">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="InstrumentosNaPartitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_partitura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Like_Partitura">
           <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
-          <End Role="Like" Type="FirstProjecModel.Like" Multiplicity="0..1" />
+          <End Role="Like" Type="FirstProjecModel.Like" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partitura">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Like">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_partitura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Like_Usuario">
           <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
-          <End Role="Like" Type="FirstProjecModel.Like" Multiplicity="0..1" />
+          <End Role="Like" Type="FirstProjecModel.Like" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Like">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Partitura_Vendedor">
           <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="1" />
-          <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="0..1" />
+          <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vendedor">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Partitura">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_vendedor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1195,26 +1161,26 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RespostaPesquisa_Usuario">
-          <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
-          <End Role="RespostaPesquisa" Type="FirstProjecModel.RespostaPesquisa" Multiplicity="0..1" />
+          <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="0..1" />
+          <End Role="RespostaPesquisa" Type="FirstProjecModel.RespostaPesquisa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="RespostaPesquisa">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Vendedor_Usuario">
           <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
-          <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="0..1" />
+          <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Vendedor">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="fk_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1250,6 +1216,7 @@
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="valor" ColumnName="valor" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fk_tipoPagamento" ColumnName="fk_tipoPagamento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1397,12 +1364,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoPagamentoCompra">
-            <EntityTypeMapping TypeName="FirstProjecModel.TipoPagamentoCompra">
-              <MappingFragment StoreEntitySet="TipoPagamentoCompra">
+          <EntitySetMapping Name="TipoPagamento">
+            <EntityTypeMapping TypeName="FirstProjecModel.TipoPagamento">
+              <MappingFragment StoreEntitySet="TipoPagamento">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="fk_compra" ColumnName="fk_compra" />
-                <ScalarProperty Name="fk_tipo_pagamento" ColumnName="fk_tipo_pagamento" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1453,156 +1419,156 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Partitura">
-        <EntityTypeShape EntityType="FirstProjecModel.categoriaDaPartitura" Width="1.5" PointX="9.75" PointY="17.875" Height="1.9802864583333317" IsExpanded="true" />
+      <Diagram Name="Partitu">
+        <EntityTypeShape EntityType="FirstProjecModel.categoriaDaPartitura" Width="1.5" PointX="9.75" PointY="18" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstProjecModel.CategoriaP" Width="1.5" PointX="7.5" PointY="22.125" Height="1.5956835937500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Compra" Width="1.5" PointX="5.25" PointY="10.5" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Contato" Width="1.5" PointX="5.25" PointY="4" Height="1.7879850260416657" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.ContatoRespostaPesquisa" Width="1.5" PointX="7.5" PointY="4.875" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Compra" Width="1.5" PointX="5.25" PointY="10.5" Height="2.9417936197916639" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Contato" Width="1.5" PointX="5.25" PointY="4.125" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.ContatoRespostaPesquisa" Width="1.5" PointX="7.5" PointY="5" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstProjecModel.DenunciaPartitura" Width="1.5" PointX="8.25" PointY="10.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Endereco" Width="1.5" PointX="0.75" PointY="10.5" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.FormaPagamento" Width="1.5" PointX="8.25" PointY="2.125" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.InformacaoBancaria" Width="1.5" PointX="3" PointY="14.75" Height="2.1725878906249978" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Instrumento" Width="1.5" PointX="7.5" PointY="25" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.InstrumentosNaPartitura" Width="1.5" PointX="9.75" PointY="20.875" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Like" Width="1.5" PointX="8.25" PointY="7.875" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Partitura" Width="1.5" PointX="7.5" PointY="16.75" Height="4.2879036458333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.PartiturasDoUsuario" Width="1.5" PointX="8.25" PointY="13.75" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Endereco" Width="1.5" PointX="0.75" PointY="10.625" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.FormaPagamento" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.InformacaoBancaria" Width="1.5" PointX="3" PointY="14.875" Height="2.1725878906249978" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Instrumento" Width="1.5" PointX="7.5" PointY="25.125" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.InstrumentosNaPartitura" Width="1.5" PointX="9.75" PointY="21" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Like" Width="1.5" PointX="8.25" PointY="8" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Partitura" Width="1.5" PointX="7.5" PointY="16.875" Height="4.2879036458333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.PartiturasDoUsuario" Width="1.5" PointX="8.25" PointY="13.875" Height="2.1725878906249978" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstProjecModel.Pesquisa" Width="1.5" PointX="3" PointY="7.125" Height="1.5956835937500031" IsExpanded="true" />
         <EntityTypeShape EntityType="FirstProjecModel.RespostaPesquisa" Width="1.5" PointX="5.25" PointY="6.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.TipoPagamentoCompra" Width="1.5" PointX="10.5" PointY="10.875" Height="1.9802864583333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Usuario" Width="1.5" PointX="3" PointY="9.75" Height="4.2879036458333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirstProjecModel.Vendedor" Width="1.5" PointX="5.25" PointY="14.625" Height="2.5571907552083406" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.TipoPagamento" Width="1.5" PointX="3" PointY="4.125" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Usuario" Width="1.5" PointX="3" PointY="9.875" Height="4.2879036458333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirstProjecModel.Vendedor" Width="1.5" PointX="5.25" PointY="14.75" Height="2.5571907552083406" IsExpanded="true" />
         <AssociationConnector Association="FirstProjecModel.FK_categoriaDaPartitura_CategoriaP" ManuallyRouted="false">
           <ConnectorPoint PointX="9" PointY="22.125" />
           <ConnectorPoint PointX="9.375" PointY="21.75" />
-          <ConnectorPoint PointX="9.375" PointY="18.865143229166666" />
-          <ConnectorPoint PointX="9.75" PointY="18.865143229166666" />
+          <ConnectorPoint PointX="9.375" PointY="18.990143229166666" />
+          <ConnectorPoint PointX="9.75" PointY="18.990143229166666" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_categoriaDaPartitura_Partitura" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="18.307571614583331" />
-          <ConnectorPoint PointX="9.75" PointY="18.307571614583331" />
+          <ConnectorPoint PointX="9" PointY="18.432571614583331" />
+          <ConnectorPoint PointX="9.75" PointY="18.432571614583331" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_Compra_Partitura" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.84375" PointY="16.75" />
-          <ConnectorPoint PointX="7.84375" PointY="10.59375" />
-          <ConnectorPoint PointX="7.8255195833333326" PointY="10.59375" />
-          <ConnectorPoint PointX="7.6588529166666666" PointY="10.59375" />
-          <ConnectorPoint PointX="6.75" PointY="10.59375" />
+          <ConnectorPoint PointX="7.84375" PointY="16.875" />
+          <ConnectorPoint PointX="7.84375" PointY="13.309591471354166" />
+          <ConnectorPoint PointX="7.8255195833333326" PointY="13.309591471354164" />
+          <ConnectorPoint PointX="7.5572891666666662" PointY="13.309591471354166" />
+          <ConnectorPoint PointX="6.75" PointY="13.309591471354166" />
         </AssociationConnector>
-        <AssociationConnector Association="FirstProjecModel.FK_Compra_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="11.87474609375" />
-          <ConnectorPoint PointX="5.25" PointY="11.87474609375" />
+        <AssociationConnector Association="FirstProjecModel.FK_Compra_TipoPagamento" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.7206835937500031" />
+          <ConnectorPoint PointX="4.875" PointY="6.0956835937500031" />
+          <ConnectorPoint PointX="4.875" PointY="11.970896809895832" />
+          <ConnectorPoint PointX="5.25" PointY="11.970896809895832" />
         </AssociationConnector>
-        <AssociationConnector Association="FirstProjecModel.FK_TipoPagamentoCompra_Compra" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="13.213440755208334" />
-          <ConnectorPoint PointX="7.5572891666666671" PointY="13.213440755208332" />
-          <ConnectorPoint PointX="7.9270833333333321" PointY="13.213440755208334" />
-          <ConnectorPoint PointX="8.9166666666666661" PointY="13.213440755208334" />
-          <ConnectorPoint PointX="9.0833333333333339" PointY="13.213440755208334" />
-          <ConnectorPoint PointX="11.25" PointY="13.213440755208334" />
-          <ConnectorPoint PointX="11.25" PointY="12.855286458333339" />
+        <AssociationConnector Association="FirstProjecModel.FK_Compra_Usuario1" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.172948404947917" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="11.172948404947917" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="11.172948404947917" />
+          <ConnectorPoint PointX="5.25" PointY="11.172948404947917" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_ContatoRespostaPesquisa_Contato" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="5.3314925130208328" />
-          <ConnectorPoint PointX="7.5" PointY="5.3314925130208328" />
+          <ConnectorPoint PointX="6.75" PointY="5.4564925130208328" />
+          <ConnectorPoint PointX="7.5" PointY="5.4564925130208328" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_ContatoRespostaPesquisa_RespostaPesquisa" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="7.3338937291666664" />
-          <ConnectorPoint PointX="7.84375" PointY="7.3338937291666664" />
-          <ConnectorPoint PointX="7.84375" PointY="6.8552864583333317" />
+          <ConnectorPoint PointX="6.75" PointY="7.4588937291666664" />
+          <ConnectorPoint PointX="7.84375" PointY="7.4588937291666664" />
+          <ConnectorPoint PointX="7.84375" PointY="6.9802864583333317" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_DenunciaPartitura_Partitura" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.6406225" PointY="16.75" />
+          <ConnectorPoint PointX="7.6406225" PointY="16.875" />
           <ConnectorPoint PointX="7.6406225" PointY="11.932444661458334" />
-          <ConnectorPoint PointX="7.6588529166666666" PointY="11.932444661458332" />
-          <ConnectorPoint PointX="7.927083333333333" PointY="11.932444661458334" />
+          <ConnectorPoint PointX="7.6588529166666666" PointY="11.932444661458334" />
+          <ConnectorPoint PointX="7.8255195833333326" PointY="11.932444661458334" />
           <ConnectorPoint PointX="8.25" PointY="11.932444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_DenunciaPartitura_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="12.987576869791663" />
-          <ConnectorPoint PointX="5" PointY="12.987576869791663" />
-          <ConnectorPoint PointX="5" PointY="13.4994921875" />
-          <ConnectorPoint PointX="7.5572891666666671" PointY="13.499492187499998" />
-          <ConnectorPoint PointX="7.9270833333333321" PointY="13.4994921875" />
-          <ConnectorPoint PointX="9" PointY="13.4994921875" />
+          <ConnectorPoint PointX="4.5" PointY="13.066899727864586" />
+          <ConnectorPoint PointX="5" PointY="13.066899727864586" />
+          <ConnectorPoint PointX="5" PointY="13.691793619791664" />
+          <ConnectorPoint PointX="7.5572891666666671" PointY="13.691793619791662" />
+          <ConnectorPoint PointX="7.9270833333333321" PointY="13.691793619791664" />
+          <ConnectorPoint PointX="9" PointY="13.691793619791664" />
           <ConnectorPoint PointX="9" PointY="13.114889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_Usuario_Endereco" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="11.87474609375" />
-          <ConnectorPoint PointX="3" PointY="11.87474609375" />
-        </AssociationConnector>
-        <AssociationConnector Association="FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.75" PointY="2.922841796875" />
-          <ConnectorPoint PointX="11.25" PointY="2.922841796875" />
-          <ConnectorPoint PointX="11.25" PointY="10.875" />
+          <ConnectorPoint PointX="2.25" PointY="11.99974609375" />
+          <ConnectorPoint PointX="3" PointY="11.99974609375" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_Vendedor_InformacaoBancaria" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.836293945312498" />
-          <ConnectorPoint PointX="5.25" PointY="15.836293945312498" />
+          <ConnectorPoint PointX="4.5" PointY="15.961293945312498" />
+          <ConnectorPoint PointX="5.25" PointY="15.961293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_InstrumentosNaPartitura_Instrumento" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="25.893992513020834" />
-          <ConnectorPoint PointX="10.5" PointY="25.893992513020834" />
-          <ConnectorPoint PointX="10.5" PointY="22.855286458333339" />
+          <ConnectorPoint PointX="9" PointY="26.018992513020834" />
+          <ConnectorPoint PointX="10.5" PointY="26.018992513020834" />
+          <ConnectorPoint PointX="10.5" PointY="22.980286458333339" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_InstrumentosNaPartitura_Partitura" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="20.975594953525647" />
-          <ConnectorPoint PointX="9.3160744349011217" PointY="21.291669388426769" />
-          <ConnectorPoint PointX="9.4339255650988783" PointY="21.409520518624525" />
-          <ConnectorPoint PointX="9.5625" PointY="21.538094953525647" />
-          <ConnectorPoint PointX="9.5625" PointY="20.6875" />
-          <ConnectorPoint PointX="9.75" PointY="20.875" />
+          <ConnectorPoint PointX="9" PointY="21.100594953525647" />
+          <ConnectorPoint PointX="9.3160744349011217" PointY="21.416669388426769" />
+          <ConnectorPoint PointX="9.4339255650988783" PointY="21.534520518624525" />
+          <ConnectorPoint PointX="9.5625" PointY="21.663094953525647" />
+          <ConnectorPoint PointX="9.5625" PointY="20.8125" />
+          <ConnectorPoint PointX="9.75" PointY="21" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_Like_Partitura" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.74218625" PointY="16.75" />
-          <ConnectorPoint PointX="7.74218625" PointY="8.8651432291666659" />
-          <ConnectorPoint PointX="8.25" PointY="8.8651432291666659" />
+          <ConnectorPoint PointX="7.74218625" PointY="16.875" />
+          <ConnectorPoint PointX="7.74218625" PointY="8.9901432291666659" />
+          <ConnectorPoint PointX="8.25" PointY="8.9901432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_Like_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="9.80769130769231" />
-          <ConnectorPoint PointX="5.15625" PointY="9.15144130769231" />
-          <ConnectorPoint PointX="5.15625" PointY="10.230286458333332" />
-          <ConnectorPoint PointX="7.6588529166666666" PointY="10.230286458333332" />
-          <ConnectorPoint PointX="7.8255195833333326" PointY="10.230286458333332" />
-          <ConnectorPoint PointX="7.875" PointY="10.230286458333332" />
-          <ConnectorPoint PointX="8.25" PointY="9.8552864583333317" />
+          <ConnectorPoint PointX="3.75" PointY="9.875" />
+          <ConnectorPoint PointX="3.75" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="7.6588529166666666" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="7.8255195833333326" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="7.875" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="7.875" PointY="9.5164668437499991" />
+          <ConnectorPoint PointX="8.25" PointY="9.5164668437499991" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_Partitura_Vendedor" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="16.966095377604169" />
-          <ConnectorPoint PointX="7.5" PointY="16.966095377604169" />
+          <ConnectorPoint PointX="6.75" PointY="17.091095377604169" />
+          <ConnectorPoint PointX="7.5" PointY="17.091095377604169" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_PartiturasDoUsuario_Partitura" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.625" PointY="16.75" />
-          <ConnectorPoint PointX="8.625" PointY="15.922587890624996" />
+          <ConnectorPoint PointX="8.625" PointY="16.875" />
+          <ConnectorPoint PointX="8.625" PointY="16.047587890624996" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_PartiturasDoUsuario_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="14.037903645833339" />
-          <ConnectorPoint PointX="3.75" PointY="14.375" />
-          <ConnectorPoint PointX="4.917819512820512" PointY="14.375" />
-          <ConnectorPoint PointX="5.0844861794871781" PointY="14.375" />
-          <ConnectorPoint PointX="7.5572891666666671" PointY="14.374999999999998" />
-          <ConnectorPoint PointX="7.9270833333333321" PointY="14.375" />
-          <ConnectorPoint PointX="8" PointY="14.375" />
-          <ConnectorPoint PointX="8" PointY="14.836293945312498" />
-          <ConnectorPoint PointX="8.25" PointY="14.836293945312498" />
+          <ConnectorPoint PointX="3.75" PointY="14.162903645833339" />
+          <ConnectorPoint PointX="3.75" PointY="14.5" />
+          <ConnectorPoint PointX="4.917819512820512" PointY="14.5" />
+          <ConnectorPoint PointX="5.0844861794871781" PointY="14.5" />
+          <ConnectorPoint PointX="7.5572891666666671" PointY="14.499999999999998" />
+          <ConnectorPoint PointX="7.9270833333333321" PointY="14.5" />
+          <ConnectorPoint PointX="8" PointY="14.5" />
+          <ConnectorPoint PointX="8" PointY="14.961293945312498" />
+          <ConnectorPoint PointX="8.25" PointY="14.961293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_RespostaPesquisa_Pesquisa" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="7.9228417968750016" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="7.9228417968750007" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="7.9228417968750016" />
           <ConnectorPoint PointX="5.25" PointY="7.9228417968750016" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_RespostaPesquisa_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.47576923076923" PointY="9.75" />
-          <ConnectorPoint PointX="4.875" PointY="9.3507692307692309" />
-          <ConnectorPoint PointX="4.875" PointY="9.4910421690705142" />
-          <ConnectorPoint PointX="5.2511528461538459" PointY="9.1148893229166674" />
+          <ConnectorPoint PointX="4.5" PointY="9.93846053846154" />
+          <ConnectorPoint PointX="4.8160744349011209" PointY="9.6223861035604177" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="9.5045349733626612" />
+          <ConnectorPoint PointX="5.0625" PointY="9.37596053846154" />
+          <ConnectorPoint PointX="5.0625" PointY="8.5501175598958348" />
+          <ConnectorPoint PointX="5.25" PointY="8.5501175598958348" />
         </AssociationConnector>
         <AssociationConnector Association="FirstProjecModel.FK_Vendedor_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="14.037903645833339" />
-          <ConnectorPoint PointX="4.875" PointY="14.412903645833339" />
-          <ConnectorPoint PointX="4.875" PointY="14.248847153846153" />
-          <ConnectorPoint PointX="5.2511528461538459" PointY="14.625" />
+          <ConnectorPoint PointX="4.5" PointY="14.162903645833339" />
+          <ConnectorPoint PointX="4.875" PointY="14.537903645833339" />
+          <ConnectorPoint PointX="4.875" PointY="14.373847153846153" />
+          <ConnectorPoint PointX="5.2511528461538459" PointY="14.75" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

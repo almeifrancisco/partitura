@@ -19,28 +19,27 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_categoriaDaPartitura_CategoriaP", "CategoriaP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.CategoriaP), "categoriaDaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.categoriaDaPartitura), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_categoriaDaPartitura_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "categoriaDaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.categoriaDaPartitura), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_categoriaDaPartitura_CategoriaP", "CategoriaP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.CategoriaP), "categoriaDaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.categoriaDaPartitura), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_categoriaDaPartitura_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "categoriaDaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.categoriaDaPartitura), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Compra_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "Compra", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Compra), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Compra_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "Compra", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Compra), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_TipoPagamentoCompra_Compra", "Compra", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Compra), "TipoPagamentoCompra", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.TipoPagamentoCompra), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Compra_TipoPagamento", "TipoPagamento", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.TipoPagamento), "Compra", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Compra), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Compra_Usuario1", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "Compra", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Compra), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_ContatoRespostaPesquisa_Contato", "Contato", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Contato), "ContatoRespostaPesquisa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.ContatoRespostaPesquisa), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_ContatoRespostaPesquisa_RespostaPesquisa", "RespostaPesquisa", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.RespostaPesquisa), "ContatoRespostaPesquisa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.ContatoRespostaPesquisa), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_DenunciaPartitura_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "DenunciaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.DenunciaPartitura), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_DenunciaPartitura_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "DenunciaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.DenunciaPartitura), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Usuario_Endereco", "Endereco", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Endereco), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Usuario), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_TipoPagamentoCompra_FormaPagamento", "FormaPagamento", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.FormaPagamento), "TipoPagamentoCompra", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.TipoPagamentoCompra), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Vendedor_InformacaoBancaria", "InformacaoBancaria", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.InformacaoBancaria), "Vendedor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Vendedor), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Usuario_Endereco", "Endereco", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Endereco), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Usuario), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Vendedor_InformacaoBancaria", "InformacaoBancaria", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.InformacaoBancaria), "Vendedor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Vendedor), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_InstrumentosNaPartitura_Instrumento", "Instrumento", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Instrumento), "InstrumentosNaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.InstrumentosNaPartitura), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_InstrumentosNaPartitura_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "InstrumentosNaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.InstrumentosNaPartitura), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Like_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "Like", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Like), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Like_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "Like", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Like), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Partitura_Vendedor", "Vendedor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Vendedor), "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Partitura), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_InstrumentosNaPartitura_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "InstrumentosNaPartitura", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.InstrumentosNaPartitura), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Like_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "Like", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Like), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Like_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "Like", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Like), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Partitura_Vendedor", "Vendedor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Vendedor), "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Partitura), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_PartiturasDoUsuario_Partitura", "Partitura", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Partitura), "PartiturasDoUsuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.PartiturasDoUsuario), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_PartiturasDoUsuario_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "PartiturasDoUsuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.PartiturasDoUsuario), true)]
 [assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_RespostaPesquisa_Pesquisa", "Pesquisa", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Pesquisa), "RespostaPesquisa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.RespostaPesquisa), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_RespostaPesquisa_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "RespostaPesquisa", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.RespostaPesquisa), true)]
-[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Vendedor_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "Vendedor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Vendedor), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_RespostaPesquisa_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Repositorio.Usuario), "RespostaPesquisa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.RespostaPesquisa), true)]
+[assembly: EdmRelationshipAttribute("FirstProjecModel", "FK_Vendedor_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Repositorio.Usuario), "Vendedor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Repositorio.Vendedor), true)]
 
 #endregion
 
@@ -367,18 +366,18 @@ namespace Repositorio
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<TipoPagamentoCompra> TipoPagamentoCompra
+        public ObjectSet<TipoPagamento> TipoPagamento
         {
             get
             {
-                if ((_TipoPagamentoCompra == null))
+                if ((_TipoPagamento == null))
                 {
-                    _TipoPagamentoCompra = base.CreateObjectSet<TipoPagamentoCompra>("TipoPagamentoCompra");
+                    _TipoPagamento = base.CreateObjectSet<TipoPagamento>("TipoPagamento");
                 }
-                return _TipoPagamentoCompra;
+                return _TipoPagamento;
             }
         }
-        private ObjectSet<TipoPagamentoCompra> _TipoPagamentoCompra;
+        private ObjectSet<TipoPagamento> _TipoPagamento;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -553,11 +552,11 @@ namespace Repositorio
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the TipoPagamentoCompra EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the TipoPagamento EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToTipoPagamentoCompra(TipoPagamentoCompra tipoPagamentoCompra)
+        public void AddToTipoPagamento(TipoPagamento tipoPagamento)
         {
-            base.AddObject("TipoPagamentoCompra", tipoPagamentoCompra);
+            base.AddObject("TipoPagamento", tipoPagamento);
         }
     
         /// <summary>
@@ -863,33 +862,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_categoriaDaPartitura_CategoriaP", "categoriaDaPartitura")]
-        public categoriaDaPartitura categoriaDaPartitura
+        public EntityCollection<categoriaDaPartitura> categoriaDaPartitura
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_CategoriaP", "categoriaDaPartitura").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_CategoriaP", "categoriaDaPartitura").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<categoriaDaPartitura> categoriaDaPartituraReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_CategoriaP", "categoriaDaPartitura");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_CategoriaP", "categoriaDaPartitura");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_CategoriaP", "categoriaDaPartitura", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_CategoriaP", "categoriaDaPartitura", value);
                 }
             }
         }
@@ -1079,6 +1062,30 @@ namespace Repositorio
         private global::System.Int32 _id;
         partial void OnidChanging(global::System.Int32 value);
         partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> fk_tipoPagamento
+        {
+            get
+            {
+                return _fk_tipoPagamento;
+            }
+            set
+            {
+                Onfk_tipoPagamentoChanging(value);
+                ReportPropertyChanging("fk_tipoPagamento");
+                _fk_tipoPagamento = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fk_tipoPagamento");
+                Onfk_tipoPagamentoChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _fk_tipoPagamento;
+        partial void Onfk_tipoPagamentoChanging(Nullable<global::System.Int32> value);
+        partial void Onfk_tipoPagamentoChanged();
 
         #endregion
 
@@ -1129,16 +1136,54 @@ namespace Repositorio
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Compra_Usuario", "Usuario")]
+        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Compra_TipoPagamento", "TipoPagamento")]
+        public TipoPagamento TipoPagamento
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TipoPagamento>("FirstProjecModel.FK_Compra_TipoPagamento", "TipoPagamento").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TipoPagamento>("FirstProjecModel.FK_Compra_TipoPagamento", "TipoPagamento").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TipoPagamento> TipoPagamentoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TipoPagamento>("FirstProjecModel.FK_Compra_TipoPagamento", "TipoPagamento");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TipoPagamento>("FirstProjecModel.FK_Compra_TipoPagamento", "TipoPagamento", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Compra_Usuario1", "Usuario")]
         public Usuario Usuario
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario", "Usuario").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario1", "Usuario").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario", "Usuario").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario1", "Usuario").Value = value;
             }
         }
         /// <summary>
@@ -1150,35 +1195,13 @@ namespace Repositorio
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario", "Usuario");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario1", "Usuario");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario", "Usuario", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_TipoPagamentoCompra_Compra", "TipoPagamentoCompra")]
-        public EntityCollection<TipoPagamentoCompra> TipoPagamentoCompra
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TipoPagamentoCompra>("FirstProjecModel.FK_TipoPagamentoCompra_Compra", "TipoPagamentoCompra");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TipoPagamentoCompra>("FirstProjecModel.FK_TipoPagamentoCompra_Compra", "TipoPagamentoCompra", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("FirstProjecModel.FK_Compra_Usuario1", "Usuario", value);
                 }
             }
         }
@@ -1984,33 +2007,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Usuario_Endereco", "Usuario")]
-        public Usuario Usuario
+        public EntityCollection<Usuario> Usuario
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Usuario_Endereco", "Usuario").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Usuario_Endereco", "Usuario").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Usuario> UsuarioReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("FirstProjecModel.FK_Usuario_Endereco", "Usuario");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Usuario>("FirstProjecModel.FK_Usuario_Endereco", "Usuario");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("FirstProjecModel.FK_Usuario_Endereco", "Usuario", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("FirstProjecModel.FK_Usuario_Endereco", "Usuario", value);
                 }
             }
         }
@@ -2100,32 +2107,6 @@ namespace Repositorio
         #endregion
 
     
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_TipoPagamentoCompra_FormaPagamento", "TipoPagamentoCompra")]
-        public EntityCollection<TipoPagamentoCompra> TipoPagamentoCompra
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TipoPagamentoCompra>("FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento", "TipoPagamentoCompra");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TipoPagamentoCompra>("FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento", "TipoPagamentoCompra", value);
-                }
-            }
-        }
-
-        #endregion
-
     }
     
     /// <summary>
@@ -2296,33 +2277,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Vendedor_InformacaoBancaria", "Vendedor")]
-        public Vendedor Vendedor
+        public EntityCollection<Vendedor> Vendedor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_InformacaoBancaria", "Vendedor").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_InformacaoBancaria", "Vendedor").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Vendedor> VendedorReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_InformacaoBancaria", "Vendedor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Vendedor>("FirstProjecModel.FK_Vendedor_InformacaoBancaria", "Vendedor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_InformacaoBancaria", "Vendedor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Vendedor>("FirstProjecModel.FK_Vendedor_InformacaoBancaria", "Vendedor", value);
                 }
             }
         }
@@ -3138,33 +3103,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_categoriaDaPartitura_Partitura", "categoriaDaPartitura")]
-        public categoriaDaPartitura categoriaDaPartitura
+        public EntityCollection<categoriaDaPartitura> categoriaDaPartitura
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_Partitura", "categoriaDaPartitura").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_Partitura", "categoriaDaPartitura").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<categoriaDaPartitura> categoriaDaPartituraReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_Partitura", "categoriaDaPartitura");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_Partitura", "categoriaDaPartitura");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_Partitura", "categoriaDaPartitura", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<categoriaDaPartitura>("FirstProjecModel.FK_categoriaDaPartitura_Partitura", "categoriaDaPartitura", value);
                 }
             }
         }
@@ -3236,33 +3185,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_InstrumentosNaPartitura_Partitura", "InstrumentosNaPartitura")]
-        public InstrumentosNaPartitura InstrumentosNaPartitura
+        public EntityCollection<InstrumentosNaPartitura> InstrumentosNaPartitura
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<InstrumentosNaPartitura>("FirstProjecModel.FK_InstrumentosNaPartitura_Partitura", "InstrumentosNaPartitura").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<InstrumentosNaPartitura>("FirstProjecModel.FK_InstrumentosNaPartitura_Partitura", "InstrumentosNaPartitura").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<InstrumentosNaPartitura> InstrumentosNaPartituraReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<InstrumentosNaPartitura>("FirstProjecModel.FK_InstrumentosNaPartitura_Partitura", "InstrumentosNaPartitura");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<InstrumentosNaPartitura>("FirstProjecModel.FK_InstrumentosNaPartitura_Partitura", "InstrumentosNaPartitura");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<InstrumentosNaPartitura>("FirstProjecModel.FK_InstrumentosNaPartitura_Partitura", "InstrumentosNaPartitura", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<InstrumentosNaPartitura>("FirstProjecModel.FK_InstrumentosNaPartitura_Partitura", "InstrumentosNaPartitura", value);
                 }
             }
         }
@@ -3274,33 +3207,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Like_Partitura", "Like")]
-        public Like Like
+        public EntityCollection<Like> Like
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Like>("FirstProjecModel.FK_Like_Partitura", "Like").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Like>("FirstProjecModel.FK_Like_Partitura", "Like").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Like> LikeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Like>("FirstProjecModel.FK_Like_Partitura", "Like");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Like>("FirstProjecModel.FK_Like_Partitura", "Like");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Like>("FirstProjecModel.FK_Like_Partitura", "Like", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Like>("FirstProjecModel.FK_Like_Partitura", "Like", value);
                 }
             }
         }
@@ -4088,26 +4005,24 @@ namespace Repositorio
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="FirstProjecModel", Name="TipoPagamentoCompra")]
+    [EdmEntityTypeAttribute(NamespaceName="FirstProjecModel", Name="TipoPagamento")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class TipoPagamentoCompra : EntityObject
+    public partial class TipoPagamento : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new TipoPagamentoCompra object.
+        /// Create a new TipoPagamento object.
         /// </summary>
         /// <param name="id">Initial value of the id property.</param>
-        /// <param name="fk_compra">Initial value of the fk_compra property.</param>
-        /// <param name="fk_tipo_pagamento">Initial value of the fk_tipo_pagamento property.</param>
-        public static TipoPagamentoCompra CreateTipoPagamentoCompra(global::System.Int32 id, global::System.Int32 fk_compra, global::System.Int32 fk_tipo_pagamento)
+        /// <param name="tipo">Initial value of the tipo property.</param>
+        public static TipoPagamento CreateTipoPagamento(global::System.Int32 id, global::System.Byte[] tipo)
         {
-            TipoPagamentoCompra tipoPagamentoCompra = new TipoPagamentoCompra();
-            tipoPagamentoCompra.id = id;
-            tipoPagamentoCompra.fk_compra = fk_compra;
-            tipoPagamentoCompra.fk_tipo_pagamento = fk_tipo_pagamento;
-            return tipoPagamentoCompra;
+            TipoPagamento tipoPagamento = new TipoPagamento();
+            tipoPagamento.id = id;
+            tipoPagamento.tipo = tipo;
+            return tipoPagamento;
         }
 
         #endregion
@@ -4146,48 +4061,24 @@ namespace Repositorio
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 fk_compra
+        public global::System.Byte[] tipo
         {
             get
             {
-                return _fk_compra;
+                return StructuralObject.GetValidValue(_tipo);
             }
             set
             {
-                Onfk_compraChanging(value);
-                ReportPropertyChanging("fk_compra");
-                _fk_compra = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("fk_compra");
-                Onfk_compraChanged();
+                OntipoChanging(value);
+                ReportPropertyChanging("tipo");
+                _tipo = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("tipo");
+                OntipoChanged();
             }
         }
-        private global::System.Int32 _fk_compra;
-        partial void Onfk_compraChanging(global::System.Int32 value);
-        partial void Onfk_compraChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 fk_tipo_pagamento
-        {
-            get
-            {
-                return _fk_tipo_pagamento;
-            }
-            set
-            {
-                Onfk_tipo_pagamentoChanging(value);
-                ReportPropertyChanging("fk_tipo_pagamento");
-                _fk_tipo_pagamento = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("fk_tipo_pagamento");
-                Onfk_tipo_pagamentoChanged();
-            }
-        }
-        private global::System.Int32 _fk_tipo_pagamento;
-        partial void Onfk_tipo_pagamentoChanging(global::System.Int32 value);
-        partial void Onfk_tipo_pagamentoChanged();
+        private global::System.Byte[] _tipo;
+        partial void OntipoChanging(global::System.Byte[] value);
+        partial void OntipoChanged();
 
         #endregion
 
@@ -4200,72 +4091,18 @@ namespace Repositorio
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_TipoPagamentoCompra_Compra", "Compra")]
-        public Compra Compra
+        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Compra_TipoPagamento", "Compra")]
+        public EntityCollection<Compra> Compra
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Compra>("FirstProjecModel.FK_TipoPagamentoCompra_Compra", "Compra").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Compra>("FirstProjecModel.FK_TipoPagamentoCompra_Compra", "Compra").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Compra> CompraReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Compra>("FirstProjecModel.FK_TipoPagamentoCompra_Compra", "Compra");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Compra>("FirstProjecModel.FK_Compra_TipoPagamento", "Compra");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Compra>("FirstProjecModel.FK_TipoPagamentoCompra_Compra", "Compra", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_TipoPagamentoCompra_FormaPagamento", "FormaPagamento")]
-        public FormaPagamento FormaPagamento
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FormaPagamento>("FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento", "FormaPagamento").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FormaPagamento>("FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento", "FormaPagamento").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<FormaPagamento> FormaPagamentoReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FormaPagamento>("FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento", "FormaPagamento");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FormaPagamento>("FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento", "FormaPagamento", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Compra>("FirstProjecModel.FK_Compra_TipoPagamento", "Compra", value);
                 }
             }
         }
@@ -4294,10 +4131,9 @@ namespace Repositorio
         /// <param name="data_nascimento">Initial value of the data_nascimento property.</param>
         /// <param name="data_cadastro">Initial value of the data_cadastro property.</param>
         /// <param name="id">Initial value of the id property.</param>
-        /// <param name="fk_endereco">Initial value of the fk_endereco property.</param>
         /// <param name="codS">Initial value of the codS property.</param>
         /// <param name="nivel">Initial value of the nivel property.</param>
-        public static Usuario CreateUsuario(global::System.String nome, global::System.String cpf, global::System.String senha, global::System.String email, global::System.DateTime data_nascimento, global::System.DateTime data_cadastro, global::System.Int32 id, global::System.Int32 fk_endereco, global::System.String codS, global::System.String nivel)
+        public static Usuario CreateUsuario(global::System.String nome, global::System.String cpf, global::System.String senha, global::System.String email, global::System.DateTime data_nascimento, global::System.DateTime data_cadastro, global::System.Int32 id, global::System.String codS, global::System.String nivel)
         {
             Usuario usuario = new Usuario();
             usuario.nome = nome;
@@ -4307,7 +4143,6 @@ namespace Repositorio
             usuario.data_nascimento = data_nascimento;
             usuario.data_cadastro = data_cadastro;
             usuario.id = id;
-            usuario.fk_endereco = fk_endereco;
             usuario.codS = codS;
             usuario.nivel = nivel;
             return usuario;
@@ -4491,9 +4326,9 @@ namespace Repositorio
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 fk_endereco
+        public Nullable<global::System.Int32> fk_endereco
         {
             get
             {
@@ -4508,8 +4343,8 @@ namespace Repositorio
                 Onfk_enderecoChanged();
             }
         }
-        private global::System.Int32 _fk_endereco;
-        partial void Onfk_enderecoChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _fk_endereco;
+        partial void Onfk_enderecoChanging(Nullable<global::System.Int32> value);
         partial void Onfk_enderecoChanged();
     
         /// <summary>
@@ -4571,18 +4406,18 @@ namespace Repositorio
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Compra_Usuario", "Compra")]
+        [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Compra_Usuario1", "Compra")]
         public EntityCollection<Compra> Compra
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Compra>("FirstProjecModel.FK_Compra_Usuario", "Compra");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Compra>("FirstProjecModel.FK_Compra_Usuario1", "Compra");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Compra>("FirstProjecModel.FK_Compra_Usuario", "Compra", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Compra>("FirstProjecModel.FK_Compra_Usuario1", "Compra", value);
                 }
             }
         }
@@ -4654,33 +4489,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Like_Usuario", "Like")]
-        public Like Like
+        public EntityCollection<Like> Like
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Like>("FirstProjecModel.FK_Like_Usuario", "Like").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Like>("FirstProjecModel.FK_Like_Usuario", "Like").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Like> LikeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Like>("FirstProjecModel.FK_Like_Usuario", "Like");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Like>("FirstProjecModel.FK_Like_Usuario", "Like");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Like>("FirstProjecModel.FK_Like_Usuario", "Like", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Like>("FirstProjecModel.FK_Like_Usuario", "Like", value);
                 }
             }
         }
@@ -4714,33 +4533,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_RespostaPesquisa_Usuario", "RespostaPesquisa")]
-        public RespostaPesquisa RespostaPesquisa
+        public EntityCollection<RespostaPesquisa> RespostaPesquisa
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RespostaPesquisa>("FirstProjecModel.FK_RespostaPesquisa_Usuario", "RespostaPesquisa").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RespostaPesquisa>("FirstProjecModel.FK_RespostaPesquisa_Usuario", "RespostaPesquisa").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<RespostaPesquisa> RespostaPesquisaReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RespostaPesquisa>("FirstProjecModel.FK_RespostaPesquisa_Usuario", "RespostaPesquisa");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RespostaPesquisa>("FirstProjecModel.FK_RespostaPesquisa_Usuario", "RespostaPesquisa");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RespostaPesquisa>("FirstProjecModel.FK_RespostaPesquisa_Usuario", "RespostaPesquisa", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RespostaPesquisa>("FirstProjecModel.FK_RespostaPesquisa_Usuario", "RespostaPesquisa", value);
                 }
             }
         }
@@ -4752,33 +4555,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Vendedor_Usuario", "Vendedor")]
-        public Vendedor Vendedor
+        public EntityCollection<Vendedor> Vendedor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_Usuario", "Vendedor").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_Usuario", "Vendedor").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Vendedor> VendedorReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_Usuario", "Vendedor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Vendedor>("FirstProjecModel.FK_Vendedor_Usuario", "Vendedor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Vendedor>("FirstProjecModel.FK_Vendedor_Usuario", "Vendedor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Vendedor>("FirstProjecModel.FK_Vendedor_Usuario", "Vendedor", value);
                 }
             }
         }
@@ -4989,33 +4776,17 @@ namespace Repositorio
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("FirstProjecModel", "FK_Partitura_Vendedor", "Partitura")]
-        public Partitura Partitura
+        public EntityCollection<Partitura> Partitura
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Partitura>("FirstProjecModel.FK_Partitura_Vendedor", "Partitura").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Partitura>("FirstProjecModel.FK_Partitura_Vendedor", "Partitura").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Partitura> PartituraReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Partitura>("FirstProjecModel.FK_Partitura_Vendedor", "Partitura");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Partitura>("FirstProjecModel.FK_Partitura_Vendedor", "Partitura");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Partitura>("FirstProjecModel.FK_Partitura_Vendedor", "Partitura", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Partitura>("FirstProjecModel.FK_Partitura_Vendedor", "Partitura", value);
                 }
             }
         }

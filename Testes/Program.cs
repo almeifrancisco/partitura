@@ -11,7 +11,6 @@ namespace Testes
 {
     class Program
     {
-       public static UsuarioService ser = new UsuarioService();
         static PasswordManager pwdManager = new PasswordManager();
         static void Main(string[] args)
         {
@@ -40,8 +39,7 @@ namespace Testes
                 codS = salt
             };
 
-            // Lets Add the User to the database
-            ser.Insert(user); 
+        
             return salt;
         }
 
@@ -56,7 +54,7 @@ namespace Testes
             string password = Console.ReadLine();
 
             // Let us retrieve the values from the database
-            Usuario user2 = ser.Single(userid);
+            Usuario user2 = new Usuario();
 
             bool result = pwdManager.IsPasswordMatch(password, user2.codS, user2.senha);
 

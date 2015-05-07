@@ -22,11 +22,11 @@
       <EntityTypeMapping TypeName="FirstProjecModel.Compra">
         <MappingFragment StoreEntitySet="Compra">
           <ScalarProperty Name="fk_partitura" ColumnName="fk_partitura" />
-          <ScalarProperty Name="fk_comprador" ColumnName="fk_comprador" />
           <ScalarProperty Name="data_compra" ColumnName="data_compra" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="valor" ColumnName="valor" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fk_tipoPagamento" ColumnName="fk_tipoPagamento" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -174,12 +174,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TipoPagamentoCompra">
-      <EntityTypeMapping TypeName="FirstProjecModel.TipoPagamentoCompra">
-        <MappingFragment StoreEntitySet="TipoPagamentoCompra">
+    <EntitySetMapping Name="TipoPagamento">
+      <EntityTypeMapping TypeName="FirstProjecModel.TipoPagamento">
+        <MappingFragment StoreEntitySet="TipoPagamento">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="fk_compra" ColumnName="fk_compra" />
-          <ScalarProperty Name="fk_tipo_pagamento" ColumnName="fk_tipo_pagamento" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
