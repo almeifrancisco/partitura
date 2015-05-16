@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FirstProjecModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="FirstProjecEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categoriaDaPartitura" EntityType="FirstProjecModel.categoriaDaPartitura" />
+    <EntitySet Name="CategoriaP" EntityType="FirstProjecModel.CategoriaP" />
+    <EntitySet Name="Compra" EntityType="FirstProjecModel.Compra" />
+    <EntitySet Name="Contato" EntityType="FirstProjecModel.Contato" />
+    <EntitySet Name="ContatoRespostaPesquisa" EntityType="FirstProjecModel.ContatoRespostaPesquisa" />
+    <EntitySet Name="DenunciaPartitura" EntityType="FirstProjecModel.DenunciaPartitura" />
+    <EntitySet Name="Endereco" EntityType="FirstProjecModel.Endereco" />
+    <EntitySet Name="FormaPagamento" EntityType="FirstProjecModel.FormaPagamento" />
+    <EntitySet Name="InformacaoBancaria" EntityType="FirstProjecModel.InformacaoBancaria" />
+    <EntitySet Name="Instrumento" EntityType="FirstProjecModel.Instrumento" />
+    <EntitySet Name="InstrumentosNaPartitura" EntityType="FirstProjecModel.InstrumentosNaPartitura" />
+    <EntitySet Name="Like" EntityType="FirstProjecModel.Like" />
+    <EntitySet Name="Partitura" EntityType="FirstProjecModel.Partitura" />
+    <EntitySet Name="PartiturasDoUsuario" EntityType="FirstProjecModel.PartiturasDoUsuario" />
+    <EntitySet Name="Pesquisa" EntityType="FirstProjecModel.Pesquisa" />
+    <EntitySet Name="RespostaPesquisa" EntityType="FirstProjecModel.RespostaPesquisa" />
+    <EntitySet Name="sysdiagrams" EntityType="FirstProjecModel.sysdiagrams" />
+    <EntitySet Name="TipoPagamentoCompra" EntityType="FirstProjecModel.TipoPagamentoCompra" />
+    <EntitySet Name="Usuario" EntityType="FirstProjecModel.Usuario" />
+    <EntitySet Name="Vendedor" EntityType="FirstProjecModel.Vendedor" />
+    <AssociationSet Name="FK_categoriaDaPartitura_CategoriaP" Association="FirstProjecModel.FK_categoriaDaPartitura_CategoriaP">
+      <End Role="CategoriaP" EntitySet="CategoriaP" />
+      <End Role="categoriaDaPartitura" EntitySet="categoriaDaPartitura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_categoriaDaPartitura_Partitura" Association="FirstProjecModel.FK_categoriaDaPartitura_Partitura">
+      <End Role="Partitura" EntitySet="Partitura" />
+      <End Role="categoriaDaPartitura" EntitySet="categoriaDaPartitura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compra_Partitura" Association="FirstProjecModel.FK_Compra_Partitura">
+      <End Role="Partitura" EntitySet="Partitura" />
+      <End Role="Compra" EntitySet="Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compra_Usuario" Association="FirstProjecModel.FK_Compra_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Compra" EntitySet="Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipoPagamentoCompra_Compra" Association="FirstProjecModel.FK_TipoPagamentoCompra_Compra">
+      <End Role="Compra" EntitySet="Compra" />
+      <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContatoRespostaPesquisa_Contato" Association="FirstProjecModel.FK_ContatoRespostaPesquisa_Contato">
+      <End Role="Contato" EntitySet="Contato" />
+      <End Role="ContatoRespostaPesquisa" EntitySet="ContatoRespostaPesquisa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContatoRespostaPesquisa_RespostaPesquisa" Association="FirstProjecModel.FK_ContatoRespostaPesquisa_RespostaPesquisa">
+      <End Role="RespostaPesquisa" EntitySet="RespostaPesquisa" />
+      <End Role="ContatoRespostaPesquisa" EntitySet="ContatoRespostaPesquisa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DenunciaPartitura_Partitura" Association="FirstProjecModel.FK_DenunciaPartitura_Partitura">
+      <End Role="Partitura" EntitySet="Partitura" />
+      <End Role="DenunciaPartitura" EntitySet="DenunciaPartitura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DenunciaPartitura_Usuario" Association="FirstProjecModel.FK_DenunciaPartitura_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="DenunciaPartitura" EntitySet="DenunciaPartitura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Endereco" Association="FirstProjecModel.FK_Usuario_Endereco">
+      <End Role="Endereco" EntitySet="Endereco" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipoPagamentoCompra_FormaPagamento" Association="FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento">
+      <End Role="FormaPagamento" EntitySet="FormaPagamento" />
+      <End Role="TipoPagamentoCompra" EntitySet="TipoPagamentoCompra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vendedor_InformacaoBancaria" Association="FirstProjecModel.FK_Vendedor_InformacaoBancaria">
+      <End Role="InformacaoBancaria" EntitySet="InformacaoBancaria" />
+      <End Role="Vendedor" EntitySet="Vendedor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentosNaPartitura_Instrumento" Association="FirstProjecModel.FK_InstrumentosNaPartitura_Instrumento">
+      <End Role="Instrumento" EntitySet="Instrumento" />
+      <End Role="InstrumentosNaPartitura" EntitySet="InstrumentosNaPartitura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentosNaPartitura_Partitura" Association="FirstProjecModel.FK_InstrumentosNaPartitura_Partitura">
+      <End Role="Partitura" EntitySet="Partitura" />
+      <End Role="InstrumentosNaPartitura" EntitySet="InstrumentosNaPartitura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Like_Partitura" Association="FirstProjecModel.FK_Like_Partitura">
+      <End Role="Partitura" EntitySet="Partitura" />
+      <End Role="Like" EntitySet="Like" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Like_Usuario" Association="FirstProjecModel.FK_Like_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Like" EntitySet="Like" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partitura_Vendedor" Association="FirstProjecModel.FK_Partitura_Vendedor">
+      <End Role="Vendedor" EntitySet="Vendedor" />
+      <End Role="Partitura" EntitySet="Partitura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartiturasDoUsuario_Partitura" Association="FirstProjecModel.FK_PartiturasDoUsuario_Partitura">
+      <End Role="Partitura" EntitySet="Partitura" />
+      <End Role="PartiturasDoUsuario" EntitySet="PartiturasDoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PartiturasDoUsuario_Usuario" Association="FirstProjecModel.FK_PartiturasDoUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="PartiturasDoUsuario" EntitySet="PartiturasDoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RespostaPesquisa_Pesquisa" Association="FirstProjecModel.FK_RespostaPesquisa_Pesquisa">
+      <End Role="Pesquisa" EntitySet="Pesquisa" />
+      <End Role="RespostaPesquisa" EntitySet="RespostaPesquisa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RespostaPesquisa_Usuario" Association="FirstProjecModel.FK_RespostaPesquisa_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="RespostaPesquisa" EntitySet="RespostaPesquisa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vendedor_Usuario" Association="FirstProjecModel.FK_Vendedor_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Vendedor" EntitySet="Vendedor" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="categoriaDaPartitura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fk_categoria" Type="Int32" Nullable="false" />
+    <Property Name="fk_partitura" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CategoriaP" Relationship="FirstProjecModel.FK_categoriaDaPartitura_CategoriaP" FromRole="categoriaDaPartitura" ToRole="CategoriaP" />
+    <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_categoriaDaPartitura_Partitura" FromRole="categoriaDaPartitura" ToRole="Partitura" />
+  </EntityType>
+  <EntityType Name="CategoriaP">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="categoriaDaPartitura" Relationship="FirstProjecModel.FK_categoriaDaPartitura_CategoriaP" FromRole="CategoriaP" ToRole="categoriaDaPartitura" />
+  </EntityType>
+  <EntityType Name="Compra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="fk_partitura" Type="Int32" Nullable="false" />
+    <Property Name="fk_comprador" Type="Int32" Nullable="false" />
+    <Property Name="data_compra" Type="DateTime" Nullable="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="valor" Type="Double" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_Compra_Partitura" FromRole="Compra" ToRole="Partitura" />
+    <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_Compra_Usuario" FromRole="Compra" ToRole="Usuario" />
+    <NavigationProperty Name="TipoPagamentoCompra" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_Compra" FromRole="Compra" ToRole="TipoPagamentoCompra" />
+  </EntityType>
+  <EntityType Name="Contato">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="contato1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="ContatoRespostaPesquisa" Relationship="FirstProjecModel.FK_ContatoRespostaPesquisa_Contato" FromRole="Contato" ToRole="ContatoRespostaPesquisa" />
+  </EntityType>
+  <EntityType Name="ContatoRespostaPesquisa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fk_contato" Type="Int32" Nullable="false" />
+    <Property Name="fk_resposta_pesquisa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contato" Relationship="FirstProjecModel.FK_ContatoRespostaPesquisa_Contato" FromRole="ContatoRespostaPesquisa" ToRole="Contato" />
+    <NavigationProperty Name="RespostaPesquisa" Relationship="FirstProjecModel.FK_ContatoRespostaPesquisa_RespostaPesquisa" FromRole="ContatoRespostaPesquisa" ToRole="RespostaPesquisa" />
+  </EntityType>
+  <EntityType Name="DenunciaPartitura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="assunto" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="denuncia" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="true" />
+    <Property Name="fk_partitura" Type="Int32" Nullable="false" />
+    <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_DenunciaPartitura_Partitura" FromRole="DenunciaPartitura" ToRole="Partitura" />
+    <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_DenunciaPartitura_Usuario" FromRole="DenunciaPartitura" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Endereco">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="rua" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="numero" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="complemento" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="bairro" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="cidade" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UF" Type="String" MaxLength="2" Unicode="true" FixedLength="true" />
+    <Property Name="cep" Type="String" MaxLength="11" Unicode="true" FixedLength="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_Usuario_Endereco" FromRole="Endereco" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="FormaPagamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="TipoPagamentoCompra" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento" FromRole="FormaPagamento" ToRole="TipoPagamentoCompra" />
+  </EntityType>
+  <EntityType Name="InformacaoBancaria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="saldo" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="agencia" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="conta" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="banco" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Vendedor" Relationship="FirstProjecModel.FK_Vendedor_InformacaoBancaria" FromRole="InformacaoBancaria" ToRole="Vendedor" />
+  </EntityType>
+  <EntityType Name="Instrumento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="categoria" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="InstrumentosNaPartitura" Relationship="FirstProjecModel.FK_InstrumentosNaPartitura_Instrumento" FromRole="Instrumento" ToRole="InstrumentosNaPartitura" />
+  </EntityType>
+  <EntityType Name="InstrumentosNaPartitura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fk_instrumento" Type="Int32" Nullable="false" />
+    <Property Name="fk_partitura" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Instrumento" Relationship="FirstProjecModel.FK_InstrumentosNaPartitura_Instrumento" FromRole="InstrumentosNaPartitura" ToRole="Instrumento" />
+    <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_InstrumentosNaPartitura_Partitura" FromRole="InstrumentosNaPartitura" ToRole="Partitura" />
+  </EntityType>
+  <EntityType Name="Like">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fk_partitura" Type="Int32" Nullable="false" />
+    <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_Like_Partitura" FromRole="Like" ToRole="Partitura" />
+    <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_Like_Usuario" FromRole="Like" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Partitura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="descricao" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="instrumentos" Type="String" Nullable="false" MaxLength="70" Unicode="false" FixedLength="false" />
+    <Property Name="artista" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="musica" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="fk_vendedor" Type="Int32" Nullable="false" />
+    <Property Name="preco" Type="Double" Nullable="false" />
+    <Property Name="arranjo_trancricao" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="disponivel" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="categoriaDaPartitura" Relationship="FirstProjecModel.FK_categoriaDaPartitura_Partitura" FromRole="Partitura" ToRole="categoriaDaPartitura" />
+    <NavigationProperty Name="Compra" Relationship="FirstProjecModel.FK_Compra_Partitura" FromRole="Partitura" ToRole="Compra" />
+    <NavigationProperty Name="DenunciaPartitura" Relationship="FirstProjecModel.FK_DenunciaPartitura_Partitura" FromRole="Partitura" ToRole="DenunciaPartitura" />
+    <NavigationProperty Name="InstrumentosNaPartitura" Relationship="FirstProjecModel.FK_InstrumentosNaPartitura_Partitura" FromRole="Partitura" ToRole="InstrumentosNaPartitura" />
+    <NavigationProperty Name="Like" Relationship="FirstProjecModel.FK_Like_Partitura" FromRole="Partitura" ToRole="Like" />
+    <NavigationProperty Name="Vendedor" Relationship="FirstProjecModel.FK_Partitura_Vendedor" FromRole="Partitura" ToRole="Vendedor" />
+    <NavigationProperty Name="PartiturasDoUsuario" Relationship="FirstProjecModel.FK_PartiturasDoUsuario_Partitura" FromRole="Partitura" ToRole="PartiturasDoUsuario" />
+  </EntityType>
+  <EntityType Name="PartiturasDoUsuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fk_partitura" Type="Int32" Nullable="false" />
+    <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+    <Property Name="downloads" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_PartiturasDoUsuario_Partitura" FromRole="PartiturasDoUsuario" ToRole="Partitura" />
+    <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_PartiturasDoUsuario_Usuario" FromRole="PartiturasDoUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Pesquisa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="pergunta" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="RespostaPesquisa" Relationship="FirstProjecModel.FK_RespostaPesquisa_Pesquisa" FromRole="Pesquisa" ToRole="RespostaPesquisa" />
+  </EntityType>
+  <EntityType Name="RespostaPesquisa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="resposta" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="fk_pesquisa" Type="Int32" Nullable="false" />
+    <Property Name="fk_usuario" Type="Int32" />
+    <NavigationProperty Name="ContatoRespostaPesquisa" Relationship="FirstProjecModel.FK_ContatoRespostaPesquisa_RespostaPesquisa" FromRole="RespostaPesquisa" ToRole="ContatoRespostaPesquisa" />
+    <NavigationProperty Name="Pesquisa" Relationship="FirstProjecModel.FK_RespostaPesquisa_Pesquisa" FromRole="RespostaPesquisa" ToRole="Pesquisa" />
+    <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_RespostaPesquisa_Usuario" FromRole="RespostaPesquisa" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TipoPagamentoCompra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fk_compra" Type="Int32" Nullable="false" />
+    <Property Name="fk_tipo_pagamento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Compra" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_Compra" FromRole="TipoPagamentoCompra" ToRole="Compra" />
+    <NavigationProperty Name="FormaPagamento" Relationship="FirstProjecModel.FK_TipoPagamentoCompra_FormaPagamento" FromRole="TipoPagamentoCompra" ToRole="FormaPagamento" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="nome" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="cpf" Type="String" Nullable="false" MaxLength="11" Unicode="true" FixedLength="true" />
+    <Property Name="senha" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="data_nascimento" Type="DateTime" Nullable="false" />
+    <Property Name="data_cadastro" Type="DateTime" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_endereco" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Compra" Relationship="FirstProjecModel.FK_Compra_Usuario" FromRole="Usuario" ToRole="Compra" />
+    <NavigationProperty Name="DenunciaPartitura" Relationship="FirstProjecModel.FK_DenunciaPartitura_Usuario" FromRole="Usuario" ToRole="DenunciaPartitura" />
+    <NavigationProperty Name="Endereco" Relationship="FirstProjecModel.FK_Usuario_Endereco" FromRole="Usuario" ToRole="Endereco" />
+    <NavigationProperty Name="Like" Relationship="FirstProjecModel.FK_Like_Usuario" FromRole="Usuario" ToRole="Like" />
+    <NavigationProperty Name="PartiturasDoUsuario" Relationship="FirstProjecModel.FK_PartiturasDoUsuario_Usuario" FromRole="Usuario" ToRole="PartiturasDoUsuario" />
+    <NavigationProperty Name="RespostaPesquisa" Relationship="FirstProjecModel.FK_RespostaPesquisa_Usuario" FromRole="Usuario" ToRole="RespostaPesquisa" />
+    <NavigationProperty Name="Vendedor" Relationship="FirstProjecModel.FK_Vendedor_Usuario" FromRole="Usuario" ToRole="Vendedor" />
+  </EntityType>
+  <EntityType Name="Vendedor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="descricaoVendedor" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+    <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fk_info_bancaria" Type="Int32" Nullable="false" />
+    <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="InformacaoBancaria" Relationship="FirstProjecModel.FK_Vendedor_InformacaoBancaria" FromRole="Vendedor" ToRole="InformacaoBancaria" />
+    <NavigationProperty Name="Partitura" Relationship="FirstProjecModel.FK_Partitura_Vendedor" FromRole="Vendedor" ToRole="Partitura" />
+    <NavigationProperty Name="Usuario" Relationship="FirstProjecModel.FK_Vendedor_Usuario" FromRole="Vendedor" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_categoriaDaPartitura_CategoriaP">
+    <End Role="CategoriaP" Type="FirstProjecModel.CategoriaP" Multiplicity="1" />
+    <End Role="categoriaDaPartitura" Type="FirstProjecModel.categoriaDaPartitura" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaP">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="categoriaDaPartitura">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_categoriaDaPartitura_Partitura">
+    <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
+    <End Role="categoriaDaPartitura" Type="FirstProjecModel.categoriaDaPartitura" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Partitura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="categoriaDaPartitura">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compra_Partitura">
+    <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
+    <End Role="Compra" Type="FirstProjecModel.Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partitura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="fk_partitura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compra_Usuario">
+    <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
+    <End Role="Compra" Type="FirstProjecModel.Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="fk_comprador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TipoPagamentoCompra_Compra">
+    <End Role="Compra" Type="FirstProjecModel.Compra" Multiplicity="1" />
+    <End Role="TipoPagamentoCompra" Type="FirstProjecModel.TipoPagamentoCompra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TipoPagamentoCompra">
+        <PropertyRef Name="fk_compra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContatoRespostaPesquisa_Contato">
+    <End Role="Contato" Type="FirstProjecModel.Contato" Multiplicity="1" />
+    <End Role="ContatoRespostaPesquisa" Type="FirstProjecModel.ContatoRespostaPesquisa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contato">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ContatoRespostaPesquisa">
+        <PropertyRef Name="fk_contato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContatoRespostaPesquisa_RespostaPesquisa">
+    <End Role="RespostaPesquisa" Type="FirstProjecModel.RespostaPesquisa" Multiplicity="1" />
+    <End Role="ContatoRespostaPesquisa" Type="FirstProjecModel.ContatoRespostaPesquisa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RespostaPesquisa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ContatoRespostaPesquisa">
+        <PropertyRef Name="fk_resposta_pesquisa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DenunciaPartitura_Partitura">
+    <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
+    <End Role="DenunciaPartitura" Type="FirstProjecModel.DenunciaPartitura" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Partitura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DenunciaPartitura">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DenunciaPartitura_Usuario">
+    <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
+    <End Role="DenunciaPartitura" Type="FirstProjecModel.DenunciaPartitura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DenunciaPartitura">
+        <PropertyRef Name="fk_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Endereco">
+    <End Role="Endereco" Type="FirstProjecModel.Endereco" Multiplicity="1" />
+    <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Endereco">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TipoPagamentoCompra_FormaPagamento">
+    <End Role="FormaPagamento" Type="FirstProjecModel.FormaPagamento" Multiplicity="1" />
+    <End Role="TipoPagamentoCompra" Type="FirstProjecModel.TipoPagamentoCompra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormaPagamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TipoPagamentoCompra">
+        <PropertyRef Name="fk_tipo_pagamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vendedor_InformacaoBancaria">
+    <End Role="InformacaoBancaria" Type="FirstProjecModel.InformacaoBancaria" Multiplicity="1" />
+    <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="InformacaoBancaria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Vendedor">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentosNaPartitura_Instrumento">
+    <End Role="Instrumento" Type="FirstProjecModel.Instrumento" Multiplicity="1" />
+    <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.InstrumentosNaPartitura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instrumento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InstrumentosNaPartitura">
+        <PropertyRef Name="fk_instrumento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentosNaPartitura_Partitura">
+    <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
+    <End Role="InstrumentosNaPartitura" Type="FirstProjecModel.InstrumentosNaPartitura" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Partitura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InstrumentosNaPartitura">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Like_Partitura">
+    <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
+    <End Role="Like" Type="FirstProjecModel.Like" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Partitura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Like">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Like_Usuario">
+    <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
+    <End Role="Like" Type="FirstProjecModel.Like" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Like">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partitura_Vendedor">
+    <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="1" />
+    <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Vendedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partitura">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartiturasDoUsuario_Partitura">
+    <End Role="Partitura" Type="FirstProjecModel.Partitura" Multiplicity="1" />
+    <End Role="PartiturasDoUsuario" Type="FirstProjecModel.PartiturasDoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partitura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PartiturasDoUsuario">
+        <PropertyRef Name="fk_partitura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PartiturasDoUsuario_Usuario">
+    <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
+    <End Role="PartiturasDoUsuario" Type="FirstProjecModel.PartiturasDoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PartiturasDoUsuario">
+        <PropertyRef Name="fk_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RespostaPesquisa_Pesquisa">
+    <End Role="Pesquisa" Type="FirstProjecModel.Pesquisa" Multiplicity="1" />
+    <End Role="RespostaPesquisa" Type="FirstProjecModel.RespostaPesquisa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pesquisa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RespostaPesquisa">
+        <PropertyRef Name="fk_pesquisa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RespostaPesquisa_Usuario">
+    <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
+    <End Role="RespostaPesquisa" Type="FirstProjecModel.RespostaPesquisa" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RespostaPesquisa">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vendedor_Usuario">
+    <End Role="Usuario" Type="FirstProjecModel.Usuario" Multiplicity="1" />
+    <End Role="Vendedor" Type="FirstProjecModel.Vendedor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Vendedor">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

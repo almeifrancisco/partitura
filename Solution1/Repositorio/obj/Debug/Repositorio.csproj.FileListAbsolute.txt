@@ -1,0 +1,10 @@
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\bin\Debug\Repositorio.dll.config
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\bin\Debug\Repositorio.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\bin\Debug\Repositorio.pdb
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\bin\Debug\EntityFramework.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\bin\Debug\EntityFramework.xml
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\obj\Debug\Repositorio.dll
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\obj\Debug\Repositorio.pdb
+C:\Users\FAD\Documents\Visual Studio 2010\Projects\Solution1\Repositorio\obj\Debug\Repositorio.csprojResolveAssemblyReference.cache
