@@ -20,7 +20,13 @@
     <EntitySet Name="sysdiagrams" EntityType="FirstProjecModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TipoPagamento" EntityType="FirstProjecModel.Store.TipoPagamento" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Usuario" EntityType="FirstProjecModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Vendedor" EntityType="FirstProjecModel.Store.Vendedor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vendedor" EntityType="FirstProjecModel.Store.Vendedor" store:Type="Tables" store:Schema="dbo" store:Name="Vendedor">
+      <DefiningQuery>SELECT 
+      [Vendedor].[descricaoVendedor] AS [descricaoVendedor], 
+      [Vendedor].[fk_info_bancaria] AS [fk_info_bancaria], 
+      [Vendedor].[fk_usuario] AS [fk_usuario]
+      FROM [dbo].[Vendedor] AS [Vendedor]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_categoriaDaPartitura_CategoriaP" Association="FirstProjecModel.Store.FK_categoriaDaPartitura_CategoriaP">
       <End Role="CategoriaP" EntitySet="CategoriaP" />
       <End Role="categoriaDaPartitura" EntitySet="categoriaDaPartitura" />
@@ -72,10 +78,6 @@
     <AssociationSet Name="FK_Like_Usuario" Association="FirstProjecModel.Store.FK_Like_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Like" EntitySet="Like" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Partitura_Vendedor" Association="FirstProjecModel.Store.FK_Partitura_Vendedor">
-      <End Role="Vendedor" EntitySet="Vendedor" />
-      <End Role="Partitura" EntitySet="Partitura" />
     </AssociationSet>
     <AssociationSet Name="FK_PartiturasDoUsuario_Partitura" Association="FirstProjecModel.Store.FK_PartiturasDoUsuario_Partitura">
       <End Role="Partitura" EntitySet="Partitura" />
@@ -284,15 +286,18 @@
     <Property Name="fk_endereco" Type="int" />
     <Property Name="codS" Type="varchar(max)" Nullable="false" />
     <Property Name="nivel" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="sobreNome" Type="nchar" MaxLength="10" />
+    <Property Name="foto" Type="nvarchar(max)" />
   </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'FirstProjec.dbo.Vendedor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
   <EntityType Name="Vendedor">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="fk_usuario" />
     </Key>
     <Property Name="descricaoVendedor" Type="nvarchar" MaxLength="400" />
-    <Property Name="foto" Type="image" />
-    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="fk_info_bancaria" Type="int" Nullable="false" />
+    <Property Name="fk_info_bancaria" Type="int" />
     <Property Name="fk_usuario" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_categoriaDaPartitura_CategoriaP">
@@ -451,18 +456,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Partitura_Vendedor">
-    <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="1" />
-    <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Vendedor">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Partitura">
-        <PropertyRef Name="fk_vendedor" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PartiturasDoUsuario_Partitura">
     <End Role="Partitura" Type="FirstProjecModel.Store.Partitura" Multiplicity="1" />
     <End Role="PartiturasDoUsuario" Type="FirstProjecModel.Store.PartiturasDoUsuario" Multiplicity="*" />
@@ -524,7 +517,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vendedor_InformacaoBancaria">
-    <End Role="InformacaoBancaria" Type="FirstProjecModel.Store.InformacaoBancaria" Multiplicity="1" />
+    <End Role="InformacaoBancaria" Type="FirstProjecModel.Store.InformacaoBancaria" Multiplicity="0..1" />
     <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="InformacaoBancaria">
@@ -537,7 +530,7 @@
   </Association>
   <Association Name="FK_Vendedor_Usuario">
     <End Role="Usuario" Type="FirstProjecModel.Store.Usuario" Multiplicity="1" />
-    <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="*" />
+    <End Role="Vendedor" Type="FirstProjecModel.Store.Vendedor" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Usuario">
         <PropertyRef Name="id" />

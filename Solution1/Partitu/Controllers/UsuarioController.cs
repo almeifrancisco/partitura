@@ -17,7 +17,7 @@ namespace Partitu.Controllers
     {
         //
         // GET: /Usuario/
-        [Authorize]
+       
         public ActionResult UsuarioCadastro()
         {
             UsuarioModel usuario = new UsuarioModel();
@@ -28,9 +28,9 @@ namespace Partitu.Controllers
         public ActionResult UsuarioCadastro(UsuarioModel usuario)
         {
 
-
-
+            
             UsuarioService serUser = new UsuarioService();
+            
 
             if(serUser.Exists(usuario.email))
             {
@@ -40,9 +40,10 @@ namespace Partitu.Controllers
         
         
         
-            if (ModelState.IsValid)        
-            {   
+            if (ModelState.IsValid)
+            {
                 Repositorio.Usuario user = trocarUser(usuario);
+                
                 string msg = serUser.CadastroDeUsuario(user);
                 if(string.IsNullOrEmpty(msg)) return RedirectToAction("index", "home");
                 ViewBag.msg = msg;
@@ -61,9 +62,15 @@ namespace Partitu.Controllers
             usuario.data_nascimento = user.data_nascimento;
             usuario.email = user.email;
             usuario.senha = user.senha;
-
+            usuario.foto = user.foto;
+            usuario.sobreNome = user.sobreNome;
+            usuario.vendedor = user.vendedor;
 
             return usuario;
+        }
+
+        public void adicionarFoto()
+        {
         }
     }
 }

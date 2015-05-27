@@ -12,9 +12,19 @@ namespace Partitu.Models
     public partial class UsuarioModel
     {
         
-        [DisplayName("Nome Completo")]
+        [DisplayName("Nome")]
         [Required(ErrorMessage = "Campo requerido")]
         public string nome { get; set; }
+
+        [DisplayName("Sobre Nome")]
+        [Required(ErrorMessage = "Campo requerido")]
+        public string sobreNome { get; set; }
+
+        [Required(ErrorMessage="Informe se é um vendedor")]
+        public bool vendedor { get; set; }
+
+        public string foto { get; set; }
+         
         [RegularExpression("^(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", ErrorMessage="A senha deve conter 8 caracteres, letras maiusculas e minusculas e numeros")]
         [Required(ErrorMessage = "Campo requerido")]
         public string senha { get; set; }
@@ -22,7 +32,6 @@ namespace Partitu.Models
         [Required(ErrorMessage = "Campo requerido")]
         public string confirmarSenha { get; set; }
         
-        [EmailExist(ErrorMessage="Alguém já esta usando esse email")]
         [DataType(DataType.EmailAddress, ErrorMessage="digite um email válido")]
         [Required(ErrorMessage = "Campo requerido")]
         public string email { get; set; }

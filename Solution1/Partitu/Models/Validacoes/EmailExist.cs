@@ -22,7 +22,7 @@ namespace Partitu.Models.Validacoes
          {
              UsuarioService servi = new UsuarioService();
 
-             if(servi.Exists(email) == null ) return false; else return true;
+             return servi.Exists(email);
 
          }
             

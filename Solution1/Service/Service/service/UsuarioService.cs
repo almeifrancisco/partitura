@@ -22,8 +22,6 @@ namespace Service.service
         {
             unit = new UnitOfWork();
             repo = new UsuarioRepositorio(this.unit);
-            repo.unitOf._db.Usuario.Where(x => x.nome == "francisco");
-
         }
 
         public Usuario getPorEmail(string email)
@@ -33,12 +31,8 @@ namespace Service.service
 
         public string CadastroDeUsuario(Usuario usuario)
         {
-            string msg = "";
-            if (Exists(usuario.email))
-            {
-                msg = "Já existte um usuário com esse email.";
-                return msg;
-            }
+           
+           
             try
             {
                 
@@ -47,17 +41,16 @@ namespace Service.service
                 string passwordHash = PwManage.GeneratePasswordHash(usuario.senha, out salt);
                 usuario.codS = salt;
                 usuario.senha = passwordHash;
-                usuario.fk_endereco = 4;
                 usuario.data_cadastro = DateTime.Now;
                 usuario.nivel = "a";
-                //Validar
-
+                
                 Insert(usuario);
                 return "";
+
             }
             catch(Exception e)
             {
-                return e.ToString();
+                return "Não foi possível salvar, verifique se todos os campos estão corretos. Se o erro continuar entre em contato com o suporte.";
             }
 
             
@@ -67,8 +60,14 @@ namespace Service.service
 
         public Usuario Single(object primaryKey)
         {
-            Usuario user = repo.Single(primaryKey);
-            return user;
+            try
+            {
+                Usuario user = repo.Single(primaryKey);
+                return user;
+            }
+            catch{
+                return null;
+            }
         }
 
 
@@ -89,7 +88,9 @@ namespace Service.service
 
         public bool Exists(object email)
         {
-            if (repo.unitOf._db.Usuario.Where(x => x.email == email).FirstOrDefault() != null) return true;
+
+            Usuario usuario = repo.unitOf._db.Usuario.Where(x => x.email == email.ToString()).FirstOrDefault();
+            if (usuario != null) return true;
             else return false;
             
         }
