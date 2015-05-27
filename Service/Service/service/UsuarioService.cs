@@ -16,42 +16,58 @@ namespace Service.service
 
 
 
-        UsuarioRepositorio repo;
+        public UsuarioRepositorio repo;
         UnitOfWork unit;
-        public UsuarioService(UnitOfWork unit)
+        public UsuarioService()
         {
-            this.unit = unit;
+            unit = new UnitOfWork();
             repo = new UsuarioRepositorio(this.unit);
-
-
         }
 
+        public Usuario getPorEmail(string email)
+        {
+            return repo.unitOf._db.Usuario.FirstOrDefault(x=>x.email==email); 
+        }
 
         public string CadastroDeUsuario(Usuario usuario)
         {
-            
-            PasswordManager PwManage = new PasswordManager();
-            string salt = null;
-            string passwordHash = PwManage.GeneratePasswordHash(usuario.senha , out salt);
-            usuario.codS = salt;
-            usuario.senha = passwordHash;
-            usuario.fk_endereco = 4;
-            usuario.data_cadastro = DateTime.Now;
-            usuario.nivel = "a";
-            
+           
+           
+            try
+            {
+                
+                PasswordManager PwManage = new PasswordManager();
+                string salt = null;
+                string passwordHash = PwManage.GeneratePasswordHash(usuario.senha, out salt);
+                usuario.codS = salt;
+                usuario.senha = passwordHash;
+                usuario.data_cadastro = DateTime.Now;
+                usuario.nivel = "a";
+                
+                Insert(usuario);
+                return "";
 
-            //Validar
+            }
+            catch(Exception e)
+            {
+                return "Não foi possível salvar, verifique se todos os campos estão corretos. Se o erro continuar entre em contato com o suporte.";
+            }
 
-            Insert(usuario);
-            return salt;
+            
         }
+
 
 
         public Usuario Single(object primaryKey)
         {
-            Usuario user = repo.Single(primaryKey);
-            return user;
-
+            try
+            {
+                Usuario user = repo.Single(primaryKey);
+                return user;
+            }
+            catch{
+                return null;
+            }
         }
 
 
@@ -70,9 +86,13 @@ namespace Service.service
             throw new NotImplementedException();
         }
 
-        public bool Exists(object primaryKey)
+        public bool Exists(object email)
         {
-            throw new NotImplementedException();
+
+            Usuario usuario = repo.unitOf._db.Usuario.Where(x => x.email == email.ToString()).FirstOrDefault();
+            if (usuario != null) return true;
+            else return false;
+            
         }
 
         public int Insert(Usuario entity)

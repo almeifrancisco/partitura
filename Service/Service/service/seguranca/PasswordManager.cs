@@ -11,7 +11,8 @@ namespace Service.service.seguranca
 
         public string GeneratePasswordHash(string plainTextPassword, out string salt)
         {
-            salt = SaltGenerator.GetSaltString();
+            SaltGenerator saltGenerator = new SaltGenerator();
+            salt = saltGenerator.GetSaltString();
 
             string finalString = plainTextPassword + salt;
 

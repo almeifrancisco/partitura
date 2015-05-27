@@ -8,15 +8,26 @@ using System.Data.Objects;
 
 namespace Repositorio.Context
 {
-    public class FirstProjecEntities : DbContext
+    public partial class FirstProjecEntities : DbContext
     {
         public FirstProjecEntities()
-            : base("name=FirstProjecEntities")
+            : base("name=PartituraEntities")
         { 
         }
 
         public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
-               
+        public DbSet<Partitura> Partitura { get; set; }
+        public DbSet<PartiturasDoUsuario> PartituraDoUsuario { get; set; }
+        public DbSet<Pesquisa> Pesquisa { get; set; }
+        public DbSet<Compra> Compra { get; set; }
+        public DbSet<Instrumento> Instrumento { get; set; }
+        public DbSet<Contato> Contato { get; set; }
+        public DbSet<DenunciaPartitura> DenunciaPartirura { get; set; }
+        public DbSet<ContatoRespostaPesquisa> ContatoRepostaPesquisa { get; set; }
+        public DbSet<InformacaoBancaria> InformacaoBancari { get; set; }
+        public DbSet<categoriaDaPartitura> CategoriaDaPartitura { get; set; }
+        public DbSet<CategoriaP> CategoriaP { get; set; }
+        public DbSet<InstrumentosNaPartitura> InstrumentosNaPartitura { get; set; }
     }
 }

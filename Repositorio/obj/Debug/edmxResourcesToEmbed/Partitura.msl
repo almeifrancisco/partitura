@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="FirstProjecModelStoreContainer" CdmEntityContainer="FirstProjecEntities">
+  <EntityContainerMapping StorageEntityContainer="PartituraModelStoreContainer" CdmEntityContainer="PartituraEntities">
     <EntitySetMapping Name="categoriaDaPartitura">
-      <EntityTypeMapping TypeName="FirstProjecModel.categoriaDaPartitura">
+      <EntityTypeMapping TypeName="PartituraModel.categoriaDaPartitura">
         <MappingFragment StoreEntitySet="categoriaDaPartitura">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_categoria" ColumnName="fk_categoria" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CategoriaP">
-      <EntityTypeMapping TypeName="FirstProjecModel.CategoriaP">
+      <EntityTypeMapping TypeName="PartituraModel.CategoriaP">
         <MappingFragment StoreEntitySet="CategoriaP">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nome" ColumnName="nome" />
@@ -19,9 +19,10 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Compra">
-      <EntityTypeMapping TypeName="FirstProjecModel.Compra">
+      <EntityTypeMapping TypeName="PartituraModel.Compra">
         <MappingFragment StoreEntitySet="Compra">
           <ScalarProperty Name="fk_partitura" ColumnName="fk_partitura" />
+          <ScalarProperty Name="fk_comprador" ColumnName="fk_comprador" />
           <ScalarProperty Name="data_compra" ColumnName="data_compra" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="valor" ColumnName="valor" />
@@ -31,7 +32,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Contato">
-      <EntityTypeMapping TypeName="FirstProjecModel.Contato">
+      <EntityTypeMapping TypeName="PartituraModel.Contato">
         <MappingFragment StoreEntitySet="Contato">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="tipo" ColumnName="tipo" />
@@ -40,7 +41,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ContatoRespostaPesquisa">
-      <EntityTypeMapping TypeName="FirstProjecModel.ContatoRespostaPesquisa">
+      <EntityTypeMapping TypeName="PartituraModel.ContatoRespostaPesquisa">
         <MappingFragment StoreEntitySet="ContatoRespostaPesquisa">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_contato" ColumnName="fk_contato" />
@@ -49,7 +50,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DenunciaPartitura">
-      <EntityTypeMapping TypeName="FirstProjecModel.DenunciaPartitura">
+      <EntityTypeMapping TypeName="PartituraModel.DenunciaPartitura">
         <MappingFragment StoreEntitySet="DenunciaPartitura">
           <ScalarProperty Name="assunto" ColumnName="assunto" />
           <ScalarProperty Name="denuncia" ColumnName="denuncia" />
@@ -60,7 +61,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Endereco">
-      <EntityTypeMapping TypeName="FirstProjecModel.Endereco">
+      <EntityTypeMapping TypeName="PartituraModel.Endereco">
         <MappingFragment StoreEntitySet="Endereco">
           <ScalarProperty Name="rua" ColumnName="rua" />
           <ScalarProperty Name="numero" ColumnName="numero" />
@@ -74,7 +75,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FormaPagamento">
-      <EntityTypeMapping TypeName="FirstProjecModel.FormaPagamento">
+      <EntityTypeMapping TypeName="PartituraModel.FormaPagamento">
         <MappingFragment StoreEntitySet="FormaPagamento">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="tipo" ColumnName="tipo" />
@@ -82,18 +83,19 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="InformacaoBancaria">
-      <EntityTypeMapping TypeName="FirstProjecModel.InformacaoBancaria">
+      <EntityTypeMapping TypeName="PartituraModel.InformacaoBancaria">
         <MappingFragment StoreEntitySet="InformacaoBancaria">
           <ScalarProperty Name="saldo" ColumnName="saldo" />
           <ScalarProperty Name="agencia" ColumnName="agencia" />
           <ScalarProperty Name="conta" ColumnName="conta" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="banco" ColumnName="banco" />
+          <ScalarProperty Name="fk_Vendedor" ColumnName="fk_Vendedor" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Instrumento">
-      <EntityTypeMapping TypeName="FirstProjecModel.Instrumento">
+      <EntityTypeMapping TypeName="PartituraModel.Instrumento">
         <MappingFragment StoreEntitySet="Instrumento">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nome" ColumnName="nome" />
@@ -102,7 +104,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="InstrumentosNaPartitura">
-      <EntityTypeMapping TypeName="FirstProjecModel.InstrumentosNaPartitura">
+      <EntityTypeMapping TypeName="PartituraModel.InstrumentosNaPartitura">
         <MappingFragment StoreEntitySet="InstrumentosNaPartitura">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_instrumento" ColumnName="fk_instrumento" />
@@ -111,7 +113,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Like">
-      <EntityTypeMapping TypeName="FirstProjecModel.Like">
+      <EntityTypeMapping TypeName="PartituraModel.Like">
         <MappingFragment StoreEntitySet="Like">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_partitura" ColumnName="fk_partitura" />
@@ -120,7 +122,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Partitura">
-      <EntityTypeMapping TypeName="FirstProjecModel.Partitura">
+      <EntityTypeMapping TypeName="PartituraModel.Partitura">
         <MappingFragment StoreEntitySet="Partitura">
           <ScalarProperty Name="nome" ColumnName="nome" />
           <ScalarProperty Name="descricao" ColumnName="descricao" />
@@ -132,11 +134,12 @@
           <ScalarProperty Name="arranjo_trancricao" ColumnName="arranjo_trancricao" />
           <ScalarProperty Name="disponivel" ColumnName="disponivel" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PartiturasDoUsuario">
-      <EntityTypeMapping TypeName="FirstProjecModel.PartiturasDoUsuario">
+      <EntityTypeMapping TypeName="PartituraModel.PartiturasDoUsuario">
         <MappingFragment StoreEntitySet="PartiturasDoUsuario">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_partitura" ColumnName="fk_partitura" />
@@ -146,7 +149,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Pesquisa">
-      <EntityTypeMapping TypeName="FirstProjecModel.Pesquisa">
+      <EntityTypeMapping TypeName="PartituraModel.Pesquisa">
         <MappingFragment StoreEntitySet="Pesquisa">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="pergunta" ColumnName="pergunta" />
@@ -154,7 +157,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RespostaPesquisa">
-      <EntityTypeMapping TypeName="FirstProjecModel.RespostaPesquisa">
+      <EntityTypeMapping TypeName="PartituraModel.RespostaPesquisa">
         <MappingFragment StoreEntitySet="RespostaPesquisa">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="resposta" ColumnName="resposta" />
@@ -164,7 +167,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="FirstProjecModel.sysdiagrams">
+      <EntityTypeMapping TypeName="PartituraModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -175,7 +178,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TipoPagamento">
-      <EntityTypeMapping TypeName="FirstProjecModel.TipoPagamento">
+      <EntityTypeMapping TypeName="PartituraModel.TipoPagamento">
         <MappingFragment StoreEntitySet="TipoPagamento">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="tipo" ColumnName="tipo" />
@@ -183,7 +186,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Usuario">
-      <EntityTypeMapping TypeName="FirstProjecModel.Usuario">
+      <EntityTypeMapping TypeName="PartituraModel.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
           <ScalarProperty Name="nome" ColumnName="nome" />
           <ScalarProperty Name="cpf" ColumnName="cpf" />
@@ -195,15 +198,16 @@
           <ScalarProperty Name="fk_endereco" ColumnName="fk_endereco" />
           <ScalarProperty Name="codS" ColumnName="codS" />
           <ScalarProperty Name="nivel" ColumnName="nivel" />
+          <ScalarProperty Name="sobreNome" ColumnName="sobreNome" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="vendedor" ColumnName="vendedor" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Vendedor">
-      <EntityTypeMapping TypeName="FirstProjecModel.Vendedor">
+      <EntityTypeMapping TypeName="PartituraModel.Vendedor">
         <MappingFragment StoreEntitySet="Vendedor">
           <ScalarProperty Name="descricaoVendedor" ColumnName="descricaoVendedor" />
-          <ScalarProperty Name="foto" ColumnName="foto" />
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_info_bancaria" ColumnName="fk_info_bancaria" />
           <ScalarProperty Name="fk_usuario" ColumnName="fk_usuario" />
         </MappingFragment>

@@ -9,7 +9,7 @@ namespace Repositorio.unityOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private TransactionScope _transaction;
-        private Repositorio.Context.FirstProjecEntities _db;
+        public Repositorio.Context.FirstProjecEntities _db;
          
         public UnitOfWork()
         {
@@ -19,13 +19,12 @@ namespace Repositorio.unityOfWork
 
         public void Dispose()
         {
-             
+           
             _transaction.Dispose();
         }
 
         public void StartTransaction()
         {
-
             _transaction = new TransactionScope();
         }
 

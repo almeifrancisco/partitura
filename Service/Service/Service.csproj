@@ -58,11 +58,11 @@
     <Compile Include="Service1.cs" />
     <Compile Include="service\EnderecoService.cs" />
     <Compile Include="service\IService.cs" />
+    <Compile Include="service\PartituraService.cs" />
     <Compile Include="service\seguranca\HashComputer.cs" />
     <Compile Include="service\seguranca\PasswordManager.cs" />
     <Compile Include="service\seguranca\SaltGenerator.cs" />
     <Compile Include="service\UsuarioService.cs" />
-    <Compile Include="service\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

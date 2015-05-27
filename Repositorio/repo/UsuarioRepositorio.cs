@@ -8,9 +8,11 @@ namespace Repositorio.repo
 {
     public class UsuarioRepositorio: BaseRepositorio<Usuario>
     {
-        public UsuarioRepositorio(IUnitOfWork unit)
+        public UnitOfWork unitOf;
+        public UsuarioRepositorio(UnitOfWork unit)
             :base(unit)
         {
+            unitOf = unit;
         }
        
     }

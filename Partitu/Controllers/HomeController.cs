@@ -10,6 +10,9 @@ namespace Partitu.Controllers
             Endereco endereco = new Endereco();
             endereco.bairro = "my endereco";
             endereco.cidade = "My Cidade";
+
+            Usuario usuario = (Usuario)Session["usuario"];
+            ViewBag.nomeUser = usuario!=null ? usuario.nome : null;
             return View(endereco);
         }
 

@@ -8,9 +8,12 @@ namespace Repositorio.repo
 {
     public class PartituraRepositorio : BaseRepositorio<Partitura>
     {
-        public PartituraRepositorio(IUnitOfWork unit)
+        public UnitOfWork unit; 
+
+        public PartituraRepositorio(UnitOfWork unit)
             : base(unit)
-        { 
+        {
+            this.unit = unit;
         }
 
     }
