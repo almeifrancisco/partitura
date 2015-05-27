@@ -196,6 +196,8 @@
           <ScalarProperty Name="fk_endereco" ColumnName="fk_endereco" />
           <ScalarProperty Name="codS" ColumnName="codS" />
           <ScalarProperty Name="nivel" ColumnName="nivel" />
+          <ScalarProperty Name="sobreNome" ColumnName="sobreNome" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -203,8 +205,6 @@
       <EntityTypeMapping TypeName="FirstProjecModel.Vendedor">
         <MappingFragment StoreEntitySet="Vendedor">
           <ScalarProperty Name="descricaoVendedor" ColumnName="descricaoVendedor" />
-          <ScalarProperty Name="foto" ColumnName="foto" />
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="fk_info_bancaria" ColumnName="fk_info_bancaria" />
           <ScalarProperty Name="fk_usuario" ColumnName="fk_usuario" />
         </MappingFragment>
